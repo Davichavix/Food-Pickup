@@ -16,9 +16,9 @@ CREATE TABLE users (
 CREATE TABLE items (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
-  description VARCHAR(255),
+  description TEXT,
   price INT NOT NULL,
-  image_url VARCHAR(255)
+  image_url TEXT
 );
 
 CREATE TABLE orders (
