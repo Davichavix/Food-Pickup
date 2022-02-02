@@ -7,51 +7,36 @@ DROP TABLE IF EXISTS orders_items CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
   phone_number VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL
-)
-
-CREATE TABLE restaurants (
-  id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  open_time TIME NOT NULL,
-  close_time TIME NOT NULL,
-  phone_number VARCHAR(255) NOT NULL,
-  street VARCHAR(255) NOT NULL,
-  city VARCHAR(255) NOT NULL,
-  province VARCHAR(255) NOT NULL,
-  postal_code VARCHAR(255) NOT NULL,
-  country VARCHAR(255) NOT NULL,
-)
-
-
-CREATE TABLE menus (
-  id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL,
-  restaurant_id INTEGER REFERENCES restaurants(id) ON DELETE CASCADE
+  password VARCHAR(255) NOT NULL,
+  isOwner BOOLEAN DEFAULT FALSE
 )
 
 CREATE TABLE items (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255) NOT NULL,
-  image_url VARCHAR(255),
   description VARCHAR(255),
   price INT NOT NULL,
-  menu_id INTEGER REFERENCES menus(id) ON DELETE CASCADE
+  image_url VARCHAR(255),
+
 )
 
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
-  created_at TIMESTAMP NOT NULL,
-  completed_at TIMESTAMP,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  qty SMALLINT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  ready_at TIME,
+  completed_at TIMESTAMP,
+  isPaid BOOLEAN DEFAULT FALSE
 )
 
-CREATE orders_items (
+CREATE order_items (
   id SERIAL PRIMARY KEY NOT NULL,
   order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
   items_id INTEGER REFERENCES items(id) ON DELETE CASCADE
+  qty SMALLINT
 )
 
