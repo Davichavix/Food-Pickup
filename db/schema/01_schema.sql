@@ -25,7 +25,7 @@ CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   created_at TIMESTAMP NOT NULL,
-  ready_at TIME,
+  ready_at TIMESTAMP,
   completed_at TIMESTAMP,
   isPaid BOOLEAN DEFAULT FALSE
 );

@@ -139,7 +139,8 @@ const addItemsToOrder = (orderId, orderItems) => {
     return [orderId, item.item_id, item.qty];
   });
 
-  db.query(format(queryString, values))
+  return db
+    .query(format(queryString, values))
     .then((res) => {
       return res.rows;
     })
@@ -147,3 +148,24 @@ const addItemsToOrder = (orderId, orderItems) => {
 };
 
 exports.addItemsToOrder = addItemsToOrder;
+
+const updateReadyTimeById = (order_id, time) => {
+  const queryString = `
+  UPDATE orders
+  SET ready_at = $2
+  WHERE id = $1
+  RETURNiNG *;`;
+
+  const values = [order_id, time];
+
+  return db
+    .query(queryString, values)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
+updateReadyTimeById(1, "2022-02-02 18:00:00-07").then((res) =>
+  console.log(res)
+);
