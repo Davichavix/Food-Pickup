@@ -2,6 +2,7 @@ require("dotenv").config({ path: "../.env" });
 
 const dbParams = require("../lib/db");
 const { Pool } = require("pg");
+const format = require("pg-format");
 
 const db = new Pool(dbParams);
 
@@ -127,15 +128,22 @@ const order = {
   ],
 };
 
-const addItemsToOrder = (orderId, orderItems)  => {
+const addItemsToOrder = (orderId, orderItems) => {
   const queryString = `
   INSERT INTO order_items (
     order_id, item_id, qty
-  ) VALUES (
-    $1, $2, $3
-  );
-  `;
+  ) VALUES %L
+   RETURNING *;`;
 
+  const values = orderItems.map((item) => {
+    return [orderId, item.item_id, item.qty];
+  });
 
+  db.query(format(queryString, values))
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
 
-}
+exports.addItemsToOrder = addItemsToOrder;
