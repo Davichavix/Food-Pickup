@@ -21,6 +21,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
 </head>
 
 <body>
@@ -41,6 +45,8 @@
           </div>
           <div class="col col-qty align-center">Quantity</div>
           <div class="col">Total</div>
+          <div class="col">Remove item</div>
+
         </div>
 
         <div class="layout-inline row">
@@ -61,6 +67,12 @@
 
           <div class="col col-total col-numeric">
             <p>$20.97</p>
+          </div>
+
+          <div class="col col-delete align-center">
+            <button class="item-delete">
+              <i class="far fa-times-circle fa-lg"></i>
+            </button>
           </div>
         </div>
 
@@ -83,6 +95,8 @@
           <div class="col col-total col-numeric">
             <p>$20.97</p>
           </div>
+
+
 
         </div>
 
@@ -107,29 +121,31 @@
           </div>
         </div>
 
+
+
         <div class="tf">
           <div class="row layout-inline">
             <div class="col">
               <p>Subtotal: </p>
             </div>
-            <div class="col"></div>
+            <div class="col">$100</div>
           </div>
           <div class="row layout-inline">
             <div class="col">
               <p>Tax: </p>
             </div>
-            <div class="col"></div>
+            <div class="col">$5</div>
           </div>
             <div class="row layout-inline">
             <div class="col">
               <p>Total: </p>
             </div>
-            <div class="col"></div>
+            <div class="col">$105</div>
           </div>
         </div>
   </div>
 
-    <a href="#" class="btn btn-update">Update cart</a>
+    <a href="#" class="btn-trans btn-update">Update cart</a>
 
 </div>
 

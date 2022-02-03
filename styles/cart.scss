@@ -16,7 +16,6 @@
   margin-bottom: 1.8em;
 }
 
-
 .layout-inline > * {
   display: inline-block;
 }
@@ -39,6 +38,7 @@
   text-transform: uppercase;
   text-align: right;
   font-size: 18px;
+  height: 200px;
 }
 
 .tf p {
@@ -46,6 +46,7 @@
   font-weight: 600;
   font-family: $text;
   font-size: 18px;
+  padding: 0px;
 }
 
 .col {
@@ -79,6 +80,7 @@
 
 .tf .col {
   width: 20%;
+  height: 50px;
 }
 
 .row > div {
@@ -147,3 +149,15 @@ input {
   text-align: center;
 }
 
+.fa-times-circle {
+  color: red;
+}
+
+.item-delete {
+  background-color: transparent;
+  border: 0px;
+}
+
+.item-delete:active {
+
+}
