@@ -103,7 +103,7 @@ const getAllOpenOrders = () => {
 
 const getAllItemsByOrderId = (orderId) => {
   const queryString = `
-  SELECT items.* FROM items
+  SELECT items.*, qty FROM items
   JOIN order_items ON order_items.item_id = items.id
   WHERE order_id = $1;
   `;
@@ -205,23 +205,26 @@ const getItemById = (id) => {
   return db
     .query(queryString, [id])
     .then((res) => {
+      if (res.rows.length < 1) {
+        return null;
+      }
       return res.rows[0];
     })
     .catch((err) => console.log(err));
 };
 
 module.exports = {
-  getUserByEmail,
-  getUserById,
-  addUser,
-  getAllOrdersByUserId,
+  getUserByEmail,         //
+  getUserById,            //
+  getAllOrdersByUserId,   //
   getAllOrdersOwner,
   getAllOpenOrders,
-  getAllItemsByOrderId,
+  getAllItemsByOrderId,   //
+  getAllItems,            //
+  getItemById,            //
+  addUser,
   addOrder,
   addItemsToOrder,
   updateReadyTimeById,
   completeOrder,
-  getAllItems,
-  getItemById,
 };
