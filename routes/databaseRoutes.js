@@ -1,10 +1,10 @@
 require("dotenv").config();
 
-// const dbParams = require("../lib/db");
-// const { Pool } = require("pg");
+const dbParams = require("../lib/db");
+const { Pool } = require("pg");
 const format = require("pg-format");
 
-// const db = new Pool(dbParams);
+const db = new Pool(dbParams);
 
 const getUserByEmail = (email) => {
   const queryString = `SELECT * FROM users WHERE email = $1;`;
