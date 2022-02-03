@@ -9,6 +9,37 @@
     </div>
 
 
+    <!-- If user's logged in  -->
+    <div class="nav-user" style ='display: none;'>
+    <!-- remove display after adding logic -->
+      <form class="nav-logout">
+      <!--Add to form: action="/logout" method="POST" -->
+        <lable class="nav-gretting">Hello, user.name! </lable>
+        <button type="submit" class="nav-button">Log out</button>
+      </form>
+
+      <div>
+        <button type="button" class="nav-button"> Menu</button>
+        <button type="button" class="nav-button"> Orders</button>
+      </div>
+    </div>
+
+
+    <!-- If admin's logged in -->
+    <div class="nav-admin">
+      <!-- remove display after adding logic -->
+        <form class="nav-logout">
+        <!--Add to form: action="/logout" method="POST" -->
+          <lable class="nav-gretting">Hello, admin.name! </lable>
+          <button type="submit" class="nav-button">Log out</button>
+        </form>
+
+        <div>
+          <button type="button" class="nav-button"> Open Orders</button>
+          <button type="button" class="nav-button"> History Orders</button>
+        </div>
+      </div>
+
   </nav>
 
   <a href='localhost:8080' class="header-logo"><img src="/images/logo.png" class="logo"></a>
