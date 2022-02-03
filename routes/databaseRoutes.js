@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config();
 
 const dbParams = require("../lib/db");
 const { Pool } = require("pg");
@@ -63,7 +63,7 @@ const addUser = (user) => {
 
 exports.addUser = addUser;
 
-const getAllOrders = (user_id, limit = 10) => {
+const getAllOrdersByUserId = (user_id, limit = 10) => {
   const queryString = `
   SELECT orders.* FROM orders
   JOIN users ON users.id = orders.user_id
@@ -78,7 +78,39 @@ const getAllOrders = (user_id, limit = 10) => {
     .catch((err) => console.log(err));
 };
 
-exports.getAllOrders = getAllOrders;
+exports.getAllOrdersByUserId = getAllOrdersByUserId;
+
+const getAllOrdersOwner = () => {
+  const queryString = `
+  SELECT orders.* FROM orders
+  ORDER BY created_at DESC;
+  `;
+
+  return db
+    .query(queryString)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
+exports.getAllOrdersOwner = getAllOrdersOwner;
+
+const getAllOpenOrders = () => {
+  const queryString = `
+  SELECT orders.* FROM orders
+  WHERE completed = FALSE
+  ORDER BY created_at ASC;
+  `;
+  return db
+    .query(queryString)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
+exports.getAllOpenOrders = getAllOpenOrders;
 
 const getAllItemsByOrderId = (orderId) => {
   const queryString = `
@@ -116,17 +148,17 @@ const addOrder = (order) => {
 };
 exports.addOrder = addOrder;
 
-const order = {
-  userId: 1,
-  created_at: "2022-02-02 21:00:00-07",
-  orderItems: [
-    { item_id: 1, qty: 2 },
-    { item_id: 2, qty: 1 },
-    { item_id: 3, qty: 4 },
-    { item_id: 5, qty: 3 },
-    { item_id: 6, qty: 5 },
-  ],
-};
+// const order = {
+//   userId: 1,
+//   created_at: "2022-02-02 21:00:00-07",
+//   orderItems: [
+//     { item_id: 1, qty: 2 },
+//     { item_id: 2, qty: 1 },
+//     { item_id: 3, qty: 4 },
+//     { item_id: 5, qty: 3 },
+//     { item_id: 6, qty: 5 },
+//   ],
+// };
 
 const addItemsToOrder = (orderId, orderItems) => {
   const queryString = `
@@ -154,7 +186,7 @@ const updateReadyTimeById = (order_id, time) => {
   UPDATE orders
   SET ready_at = $2
   WHERE id = $1
-  RETURNiNG *;`;
+  RETURNING *;`;
 
   const values = [order_id, time];
 
@@ -166,6 +198,21 @@ const updateReadyTimeById = (order_id, time) => {
     .catch((err) => console.log(err));
 };
 
-updateReadyTimeById(1, "2022-02-02 18:00:00-07").then((res) =>
-  console.log(res)
-);
+exports.updateReadyTimeById = updateReadyTimeById;
+
+const completeOrder = (order_id) => {
+  const queryString = `
+  UPDATE orders
+  SET completed = $1
+  WHERE id = $2
+  RETURNING *`;
+
+  return db
+    .query(queryString, [true, order_id])
+    .then((res) => {
+      return res.rows[0];
+    })
+    .catch((err) => console.log(err));
+};
+
+exports.completeOrder = completeOrder;
