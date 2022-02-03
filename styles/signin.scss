@@ -20,25 +20,7 @@ header {
   height: 60px;
   width: 300px;
   margin: 10px;
-  font-family: $button-text;
-  font-size: $button-text-size;
-  color: $text-color;
-  background-color: $theme-color;
-  border: 0;
-
-  cursor: pointer;
 }
-
-.signin-button:hover {
-  background-color: $button-color;
-}
-
-// .signin-form {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-
-// }
 
 .form-group {
   width: 300px;
@@ -53,6 +35,8 @@ header {
 .form-control {
   width: 300px;
   height: 40px;
+  font-family: $text;
+  font-size: 18px;
 }
 
 .button-control {

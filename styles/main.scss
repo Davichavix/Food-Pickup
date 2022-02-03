@@ -81,9 +81,7 @@ h1 {
   transform: scale(0.98);
 }
 
-.cart-button {
-  height: 60px;
-  width: 350px;
+.btn {
   font-family: $button-text;
   font-size: $button-text-size;
   color: $text-color;
@@ -92,12 +90,17 @@ h1 {
   cursor: pointer;
 }
 
-.cart-button:active {
+.btn:active {
   transform: scale(0.98);
 }
 
-.cart-button:hover {
+.btn:hover {
   background-color: $button-color;
+}
+
+.cart-button {
+  height: 60px;
+  width: 350px;
 }
 
 .cart {
