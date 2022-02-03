@@ -1,1 +1,40 @@
 @import 'styles/global';
+
+.logo {
+  width: 120px;
+  height: auto;
+
+}
+
+.header-logo {
+  position: absolute;
+  top: 0px;
+  margin: 0 45% 0 45%;
+  display: flex;
+  align-items: center;
+  height: $header-height;
+}
+
+.nav-no-user {
+  height: $header-height;
+  margin: 0 5%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.nav-button {
+  height: 60px;
+  width: 180px;
+  margin: 10px;
+  font-family: $button-text;
+  font-size: $button-text-size;
+  color: $text-color;
+  background-color: transparent;
+  border: 0px;
+}
+
+.nav-button:hover {
+  background-color: $button-color;
+}
+
