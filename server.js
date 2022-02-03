@@ -42,6 +42,7 @@ const homePageRoutes = require("./routes/home_page");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
+app.use("/BubbleTea", homePageRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
