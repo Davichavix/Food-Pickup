@@ -121,10 +121,10 @@ const addOrder = (order) => {
   INSERT INTO orders (
   user_id, created_at
   ) VALUES (
-    $1, $2
+    $1, to_timestamp($2)
   ) RETURNING *`;
 
-  const values = [order.userId, order.created_at];
+  const values = [order.userId, order.createdAt];
 
   return db
     .query(queryString, values)
@@ -142,7 +142,7 @@ const addItemsToOrder = (orderId, orderItems) => {
    RETURNING *;`;
 
   const values = orderItems.map((item) => {
-    return [orderId, item.item_id, item.qty];
+    return [orderId, item.itemId, item.qty];
   });
 
   return db
@@ -156,7 +156,7 @@ const addItemsToOrder = (orderId, orderItems) => {
 const updateReadyTimeById = (order_id, time) => {
   const queryString = `
   UPDATE orders
-  SET ready_at = $2
+  SET ready_at = to_timestamp($2)
   WHERE id = $1
   RETURNING *;`;
 
@@ -217,14 +217,14 @@ module.exports = {
   getUserByEmail,         //
   getUserById,            //
   getAllOrdersByUserId,   //
-  getAllOrdersOwner,
-  getAllOpenOrders,
+  getAllOrdersOwner,      //
+  getAllOpenOrders,       //
   getAllItemsByOrderId,   //
   getAllItems,            //
   getItemById,            //
-  addUser,
-  addOrder,
-  addItemsToOrder,
-  updateReadyTimeById,
-  completeOrder,
+  addUser,                //
+  addOrder,               //incomplete
+  addItemsToOrder,        //incomplete
+  updateReadyTimeById,    //incomplete
+  completeOrder,          //
 };
