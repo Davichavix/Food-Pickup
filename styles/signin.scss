@@ -1,0 +1,72 @@
+@import 'styles/global';
+
+#signin-title {
+  margin-bottom: 30px;
+}
+
+header {
+  margin: 0 47% 0 47%;
+  display: flex;
+  align-items: center;
+  height: $header-height;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+.signin-button {
+  height: 60px;
+  width: 300px;
+  margin: 10px;
+  font-family: $button-text;
+  font-size: $button-text-size;
+  color: $text-color;
+  background-color: $theme-color;
+  border: 0;
+
+  cursor: pointer;
+}
+
+.signin-button:hover {
+  background-color: $button-color;
+}
+
+// .signin-form {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+
+// }
+
+.form-group {
+  width: 300px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.form-control {
+  width: 300px;
+  height: 40px;
+}
+
+.button-control {
+  display: flex;
+  justify-content: center;
+}
+
+.shadow-box {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 500px;
+  height: 300px;
+  margin: auto;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
