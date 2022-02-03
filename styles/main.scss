@@ -1,3 +1,13 @@
+@import 'styles/global';
+
 body {
   background-color: #f5f0ec;
 }
+ h1 {
+   font-family: $h1;
+   font-size: 50px;
+   color: $text-color;
+   display: flex;
+   justify-content: center;
+   margin: 50px;
+ }
