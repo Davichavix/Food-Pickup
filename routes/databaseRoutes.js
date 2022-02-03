@@ -148,18 +148,6 @@ const addOrder = (order) => {
 };
 exports.addOrder = addOrder;
 
-// const order = {
-//   userId: 1,
-//   created_at: "2022-02-02 21:00:00-07",
-//   orderItems: [
-//     { item_id: 1, qty: 2 },
-//     { item_id: 2, qty: 1 },
-//     { item_id: 3, qty: 4 },
-//     { item_id: 5, qty: 3 },
-//     { item_id: 6, qty: 5 },
-//   ],
-// };
-
 const addItemsToOrder = (orderId, orderItems) => {
   const queryString = `
   INSERT INTO order_items (
