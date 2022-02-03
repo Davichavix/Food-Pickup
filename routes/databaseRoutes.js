@@ -1,10 +1,10 @@
 require("dotenv").config();
 
-const dbParams = require("../lib/db");
-const { Pool } = require("pg");
+// const dbParams = require("../lib/db");
+// const { Pool } = require("pg");
 const format = require("pg-format");
 
-const db = new Pool(dbParams);
+// const db = new Pool(dbParams);
 
 const getUserByEmail = (email) => {
   const queryString = `SELECT * FROM users WHERE email = $1;`;
@@ -204,3 +204,17 @@ const completeOrder = (order_id) => {
 };
 
 exports.completeOrder = completeOrder;
+
+const getAllItems = () => {
+  const queryString = `
+  SELECT * FROM items;`;
+
+  return db
+    .query(queryString)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
+exports.getAllItems = getAllItems;
