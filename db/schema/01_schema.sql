@@ -18,7 +18,7 @@ CREATE TABLE items (
   name VARCHAR(255) NOT NULL,
   category VARCHAR(255),
   description TEXT,
-  price INT NOT NULL,
+  price NUMERIC(12,2) NOT NULL,
   image_url TEXT
 );
 
@@ -27,7 +27,7 @@ CREATE TABLE orders (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   created_at TIMESTAMP NOT NULL,
   ready_at TIMESTAMP,
-  completed_at TIMESTAMP,
+  completed BOOLEAN DEFAULT FALSE,
   isPaid BOOLEAN DEFAULT FALSE
 );
 

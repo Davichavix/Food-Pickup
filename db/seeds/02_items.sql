@@ -27,16 +27,16 @@ INSERT INTO items (
   'Earl Grey Bubble Tea',  'Premium Earl Grey milk tea with boba', 'Milk Tea', 6.99, '../public/images/earl_grey_bubble_tea.jpg'
 ),
 (
-  'Honey Latte',  'Fresh milk latte sweetened with Giant Hornet''s honey', 'Milk Tea', 'Latte', 6.99, '../public/images/honey_latte.jpg'
+  'Honey Latte',  'Fresh milk latte sweetened with Giant Hornet''s honey', 'Milk Tea', 6.99, '../public/images/honey_latte.jpg'
 ),
 (
-  'Matcha Latte',  'Premium matcha from Japan mixed with fresh milk latte', 'Milk Tea', 'Latte', 6.99, '../public/images/macha_latte.jpg'
+  'Matcha Latte',  'Premium matcha from Japan mixed with fresh milk latte', 'Milk Tea', 6.99, '../public/images/macha_latte.jpg'
 ),
 (
   'Matcha Bubble Tea',  'Matcha flavored bubble tea with boba', 'Milk Tea', 6.99, '../public/images/macha_bubble_tea.jpg'
 ),
 (
-  'Mango Bubble Tea',  'Fresh mango mixed with green tea and boba', 'Fruit Tea', 'Latte', 6.99, '../public/images/mango_bubble_tea.jpg'
+  'Mango Bubble Tea',  'Fresh mango mixed with green tea and boba', 'Fruit Tea', 6.99, '../public/images/mango_bubble_tea.jpg'
 ),
 (
   'Mango Slush',  'Fresh milk blended with ice and mango for a perfect balance of slushy and chewy bobab', 'Slush', 6.99, '../public/images/mango_slush.jpg'
@@ -55,5 +55,5 @@ INSERT INTO items (
 ),
 (
   'Taro Bubble Tea',  'Taro flavored milk tea with boba', 'Milk Tea', 6.99, '../public/images/taro_bubble_tea.jpg'
-),
+);
 
