@@ -96,6 +96,10 @@ h1 {
   transform: scale(0.98);
 }
 
+.cart-button:hover {
+  background-color: $button-color;
+}
+
 .cart {
   display: flex;
   justify-content: flex-end;
