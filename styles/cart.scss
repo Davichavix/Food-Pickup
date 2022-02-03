@@ -159,5 +159,20 @@ input {
 }
 
 .item-delete:active {
+  transform: scale(0.9);
+}
+
+
+.count-price {
+  font-family: $text;
+  color:$text-color;
 
 }
+
+.cart-btns {
+  float: right;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+
