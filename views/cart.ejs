@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Sign In</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/cart.css" type="text/css" />
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <%- include('partials/_header') %>
+
+  <main>
+    <h1>Cart</h1>
+
+    <div class="cart-items transition is-open"></div>
+
+      <div class="table">
+
+        <div class="layout-inline row th">
+          <div class="col col-pro">Product</div>
+          <div class="col col-price align-center ">
+            Price
+          </div>
+          <div class="col col-qty align-center">Quantity</div>
+          <div class="col">Total</div>
+        </div>
+
+        <div class="layout-inline row">
+
+          <div class="col col-pro layout-inline">
+            <p>Bubble Tea</p>
+          </div>
+
+          <div class="col col-price col-numeric align-center ">
+            <p>$6.99</p>
+          </div>
+
+          <div class="col col-qty layout-inline">
+            <a href="#" class="qty qty-minus">-</a>
+              <input type="numeric" value="3" />
+            <a href="#" class="qty qty-plus">+</a>
+          </div>
+
+          <div class="col col-total col-numeric">
+            <p>$20.97</p>
+          </div>
+        </div>
+
+        <div class="layout-inline row row-bg2">
+
+          <div class="col col-pro layout-inline">
+            <p>Macha Bubble Tea</p>
+          </div>
+
+          <div class="col col-price col-numeric align-center ">
+            <p>$6.99</p>
+          </div>
+
+          <div class="col col-qty  layout-inline">
+            <a href="#" class="qty qty-minus ">-</a>
+              <input type="numeric" value="1" />
+            <a href="#" class="qty qty-plus">+</a>
+          </div>
+
+          <div class="col col-total col-numeric">
+            <p>$20.97</p>
+          </div>
+
+        </div>
+
+        <div class="layout-inline row">
+
+          <div class="col col-pro layout-inline">
+            <p>Mango Slush</p>
+          </div>
+
+          <div class="col col-price col-numeric align-center ">
+            <p>$6.99</p>
+          </div>
+
+          <div class="col col-qty layout-inline">
+            <a href="#" class="qty qty-minus">-</a>
+              <input type="numeric" value="3" />
+            <a href="#" class="qty qty-plus">+</a>
+          </div>
+
+          <div class="col col-total col-numeric">
+            <p>$20.97</p>
+          </div>
+        </div>
+
+        <div class="tf">
+          <div class="row layout-inline">
+            <div class="col">
+              <p>Subtotal: </p>
+            </div>
+            <div class="col"></div>
+          </div>
+          <div class="row layout-inline">
+            <div class="col">
+              <p>Tax: </p>
+            </div>
+            <div class="col"></div>
+          </div>
+            <div class="row layout-inline">
+            <div class="col">
+              <p>Total: </p>
+            </div>
+            <div class="col"></div>
+          </div>
+        </div>
+  </div>
+
+    <a href="#" class="btn btn-update">Update cart</a>
+
+</div>
+
+  </main>
+
+</body>
+
+</html>
