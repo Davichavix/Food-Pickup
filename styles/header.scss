@@ -38,3 +38,18 @@
   background-color: $button-color;
 }
 
+.nav-gretting {
+  font-family: $text;
+  font-weight: 400;
+  color: $text-color;
+  font-size: 20px;
+}
+
+.nav-user, .nav-admin {
+  height: $header-height;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 5% 0 5%;
+}
+
