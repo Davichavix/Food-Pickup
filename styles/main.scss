@@ -17,7 +17,7 @@ h1 {
    color: $text-color;
    display: flex;
    justify-content: center;
-   margin: 80px;
+   margin: 3%;
  }
 
  h3 {
@@ -108,3 +108,22 @@ h1 {
   right: 10%;
 }
 
+.badge {
+  font-family: $text;
+  font-weight: 600;
+  padding-left: 8px;
+  padding-right: 8px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+  font-size: 15px;
+  background-color: red;
+  position: fixed;
+  bottom: 70px;
+  right: 320px;
+  color: #fff;
+}
+
+.badge[href] {
+  background-color: red;
+}
