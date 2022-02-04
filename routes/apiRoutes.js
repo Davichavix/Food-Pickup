@@ -1,4 +1,8 @@
-module.exports = function (router, database) {
+const express = require('express');
+const database = require('./databaseHelpers');
+const router  = express.Router();
+
+module.exports = function () {
   router.get("/", (req, res) => {
     database
       .getAllItems()

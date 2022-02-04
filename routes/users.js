@@ -6,11 +6,12 @@
  */
 
 const express = require('express');
+const { getUserById } = require('./databaseHelpers');
 const router  = express.Router();
 
-module.exports = (db) => {
+module.exports = () => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    getUserById(1)
       .then(data => {
         const users = data.rows;
         res.json({ users });

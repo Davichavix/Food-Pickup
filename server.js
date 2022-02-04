@@ -7,8 +7,10 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
+const database = require('./routes/databaseHelpers');
 const apiRoutes = require("./routes/apiRoutes");
-const database = require('./routes/databaseRoutes');
+const userRoutes = require('./routes/users');
+const signInRoutes = require('./routes/signin');
 
 
 
@@ -39,10 +41,10 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const apiRouter = express.Router();
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api", apiRoutes(apiRouter, database));
+app.use("/api", apiRoutes());
+app.use("/signin", signInRoutes())
 // Note: mount other resources here, using the same pattern above
 
 // Home page
