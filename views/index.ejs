@@ -28,16 +28,17 @@
     <h1>Menu</h1>
 
     <!-- Menu items -->
+    <% for (const item of items) { %>
     <section class="item">
-      <img src="/images/bubble_tea.jpg" class="item-image">
+      <img src=<%= item.image_url %> class="item-image">
       <div class="item-text">
-        <h3>Bubble Tea</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+        <h3><%= item.name %></h3>
+        <p><%= item.description %></p>
       </div>
-      <p class="item-price">$6.99</p>
+      <p class="item-price"><%= item.price %></p>
       <button type="button" class="add-button">Add to cart</button>
     </section>
-
+    <% } %>
     <!-- Menu end -->
 
     <section class="cart">
