@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/checkout.css" type="text/css" />
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <%- include('partials/_header') %>
+  <main>
+    <h1>Pick-up Info</h1>
+
+    <div class="table-content">
+      <div class="checkout-table">
+        <table>
+          <tbody>
+              <tr>
+                  <td>Name:</td>
+                  <td>user_name</td>
+              </tr>
+              <tr>
+                  <td>Phone Number:</td>
+                  <td>123-123-1234</td>
+              </tr>
+              <tr>
+                <td>Email:</td>
+                <td>lighthouse@gmail.com</td>
+              </tr>
+              <tr>
+                <td>Order details:</td>
+                  <table class="order-details">
+                    <tr>
+                      <td>Bubble Tea</td>
+                      <td>x 2</td>
+                    </tr>
+                    <tr>
+                      <td>Mango Slush</td>
+                      <td>  x 1</td>
+                    </tr>
+                </table>
+              </tr>
+              <hr class="checkout-divider">
+              <div class="checkout-price">
+                <table>
+                <tr>
+                  <td>Subtotal:</td>
+                  <td>$100</td>
+                </tr>
+                <tr>
+                  <td>Tax:</td>
+                  <td>$5</td>
+                </tr>
+                <tr>
+                  <td>Total:</td>
+                  <td>$105</td>
+                </tr>
+                </table>
+            </div>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="checkout-btn-group">
+          <button type="button" class="btn-trans checkout-button">Back</button>
+          <button type="button" class="btn checkout-button">Place Order</button>
+      </div>
+    </div>
+  </main>
+
+</body>
+
+</html>
