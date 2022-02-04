@@ -1,3 +1,4 @@
+
 $(() => {
   const $cartItems = $(`
   <div class="col col-pro layout-inline">
@@ -30,7 +31,7 @@ $(() => {
       </div>
 
       <div class="col col-total col-numeric">
-        <p>${total}</p>
+        <p>$${total}</p>
       </div>
 
       <div class="col col-delete align-center">
@@ -45,6 +46,7 @@ $(() => {
     });
 
     $cart.after(itemRows);
+    calculateTotal();
 
     $("a.qty-minus").on("click", function (e) {
       e.preventDefault();
@@ -92,7 +94,11 @@ $(() => {
 
       total = (Math.round(price * value * 100) / 100).toFixed(2);
       $total.text(`$${total}`).trigger("change");
+
+      calculateTotal();
     });
+
+
 
 
 
