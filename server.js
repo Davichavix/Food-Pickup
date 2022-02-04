@@ -50,7 +50,17 @@ app.use("/api", apiRoutes(apiRouter, database));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
+  database
+  .getAllItems()
+  .then((items) => {
+    let templateVars = {
+      items: items
+    }
+    res.render('index', templateVars)})
+  .catch((e) => {
+    console.log(e);
+    res.send(e);
+  });
 });
 
 app.listen(PORT, () => {
