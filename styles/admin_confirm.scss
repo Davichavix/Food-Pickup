@@ -68,20 +68,17 @@
 
 .confirm-form {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 #lang {
-  width: 150px;
+  width: 40%;
   text-align: center;
+  margin-left: 80px;
 }
 
 .confirm-button {
   width: 60%;
   height: 60px;
   margin: 20px 0;
-}
-
-.confirm-submit {
-  width: 100px;
 }
