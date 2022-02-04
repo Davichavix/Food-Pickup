@@ -1,17 +1,136 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+@import 'styles/global';
 
-  background: rgb(163, 208, 219);
-  background: linear-gradient(
-    227deg,
-    rgba(163, 208, 219, 1) 0%,
-    rgba(163, 176, 219, 1) 20%,
-    rgba(163, 173, 219, 1) 34%,
-    rgba(163, 219, 208, 1) 59%,
-    rgba(163, 208, 219, 1) 74%,
-    rgba(163, 208, 219, 1) 100%
-  );
+body {
+  background-color: #f5f0ec;
+}
+
+main {
+  width: 80%;
+  margin: auto;
+  max-width: 1200px;
+  margin-bottom: 200px;
+}
+
+h1 {
+   font-family: $h1;
+   font-size: 50px;
+   color: $text-color;
+   display: flex;
+   justify-content: center;
+   margin: 3%;
+ }
+
+ h3 {
+   font-family: $text;
+   font-weight: 600;
+   font-size: 30px;
+   color: $text-color;
+ }
+
+ p {
+   font-family: $text;
+   font-weight: 400;
+   font-size: 18px;
+   line-height: 2;
+   color: $text-color;
+ }
+
+ .item-price {
+   font-weight: 600;
+   font-size: 20px;
+ }
+
+.item-image {
+  width: 180px;
+  height: auto;
+  padding: 15px 0 15px 0;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: $text;
+}
+
+.item-text {
+  width: 500px;
+}
+
+.add-button {
+  height: 60px;
+  width: 180px;
+  margin: 10px;
+  font-family: $button-text;
+  font-size: $button-text-size;
+  color: $text-color;
+  background-color: transparent;
+  border-width: 2px;
+  border-color: $button-color;
+  border-style: solid;
+  cursor: pointer;
+}
+
+.add-button:hover {
+  background-color: $button-color;
+}
+
+.add-button:active {
+  transform: scale(0.98);
+}
+
+.btn {
+  font-family: $button-text;
+  font-size: $button-text-size;
+  color: $text-color;
+  border: 0px;
+  background-color: $theme-color;
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:hover {
+  background-color: $button-color;
+}
+
+.cart-button {
+  height: 60px;
+  width: 350px;
+}
+
+.cart {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-width: 0;
+  border-style: solid;
+  border-color: $text;
+  position: fixed;
+  bottom: 40px;
+  right: 10%;
+}
+
+.badge {
+  font-family: $text;
+  font-weight: 600;
+  padding-left: 8px;
+  padding-right: 8px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+  font-size: 15px;
+  background-color: red;
+  position: fixed;
+  bottom: 70px;
+  right: 320px;
+  color: #fff;
+}
+
+.badge[href] {
+  background-color: red;
 }

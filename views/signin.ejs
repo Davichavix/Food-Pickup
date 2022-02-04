@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Sign In</title>
 
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
@@ -13,7 +13,7 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
 
   <!-- CSS -->
-  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/signin.css" type="text/css" />
 
 
   <!-- Google Fonts -->
@@ -23,28 +23,27 @@
 </head>
 
 <body>
-  <%- include('partials/_header') %>
+  <header>
+    <a href='localhost:8080' class="header-logo"><img src="/images/logo.png" class="logo"></a>
+  </header>
   <main>
-    <h1>Menu</h1>
+    <h1 id="signin-title">Sign In</h1>
 
-    <!-- Menu items -->
-    <section class="item">
-      <img src="/images/bubble_tea.jpg" class="item-image">
-      <div class="item-text">
-        <h3>Bubble Tea</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-      </div>
-      <p class="item-price">$6.99</p>
-      <button type="button" class="add-button">Add to cart</button>
-    </section>
+    <div class="shadow-box">
+      <form action="/signin %>" method="POST" class="signin-form">
+        <div class="form-group">
 
-    <!-- Menu end -->
+          <input class="form-control" type="email" name="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
 
-    <section class="cart">
-      <button type="button" class=" btn cart-button">Cart</button>
-    </section>
-    <span class="badge">0</span>
-
+          <input class="form-control" type="password" name="password" placeholder="Password">
+        </div>
+        <div class="button-control">
+          <button type="submit" class="btn signin-button">Let's bubble! </button>
+        </div>
+      </form>
+    </div>
 
   </main>
 
