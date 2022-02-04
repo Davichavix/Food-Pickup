@@ -98,6 +98,25 @@ h1 {
   background-color: $button-color;
 }
 
+
+.btn-trans {
+  font-family: $button-text;
+  font-size: $button-text-size;
+  color: $text-color;
+  border-width: 2px;
+  border-style: solid;
+  border-color: $button-color;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn-trans:active {
+  transform: scale(0.98);
+}
+
+.btn-trans:hover {
+  background-color: $button-color;
+}
 .cart-button {
   height: 60px;
   width: 350px;

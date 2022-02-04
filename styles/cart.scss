@@ -1,0 +1,178 @@
+@import 'styles/global';
+
+.cart-items {
+  overflow: hidden;
+}
+
+.cart.is-closed {
+  height: 0;
+  margin-top: -2.5em;
+}
+
+.table {
+  background: #ffffff;
+  overflow: hidden;
+  clear: both;
+  margin-bottom: 1.8em;
+}
+
+.layout-inline > * {
+  display: inline-block;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.th {
+  background: $theme-color;
+  color: #fff;
+  font-family: $text;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.tf {
+  background: $theme-color;
+  text-transform: uppercase;
+  text-align: right;
+  font-size: 18px;
+  height: 200px;
+}
+
+.tf p {
+  color: #fff;
+  font-weight: 600;
+  font-family: $text;
+  font-size: 18px;
+}
+
+.col {
+  padding: 1em;
+  width: 12%;
+}
+
+.col-pro {
+  width: 44%;
+}
+
+.col-pro > * {
+  vertical-align: middle;
+}
+
+.col-qty {
+  text-align: center;
+  width: 17%;
+}
+
+.col-numeric p {
+  font-family: $text;
+  font-weight: 600;
+  font-size: 18px;
+  color: $text-color;
+}
+
+.col-total p {
+  color: #12c8b1;
+}
+
+.tf .col {
+  width: 20%;
+  height: 50px;
+}
+
+.row > div {
+  vertical-align: middle;
+}
+
+.row-bg2 {
+  background: #f7f7f7;
+}
+
+.visibility-cart {
+  position: absolute;
+  color: #fff;
+  top: 0.5em;
+  right: 0.5em;
+  font-family: $text;
+  border: 0.16em solid #fff;
+  padding: 0 0.22em 0 0.25em ;
+}
+
+.col-qty > * {
+  vertical-align: middle;
+}
+
+.col-qty > input {
+  max-width: 2.6em;
+}
+
+
+a.qty {
+  width: 1em;
+  line-height: 1em;
+  border-radius: 2em;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  background: $theme-color;
+  color: #fff;
+  text-decoration: none;
+}
+
+a.qty:hover {
+  background: $button-color;
+}
+
+.btn-update {
+  height: 60px;
+  width: 350px;
+  float: right;
+  margin: 0 0 1.5em 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.transition {
+  transition: all 0.3s ease-in-out;
+}
+
+input {
+  border: 2px solid #bbc3c6;
+  font-family: $text;
+  font-size: 18px;
+  color: #8a8a8a;
+  text-align: center;
+}
+
+.fa-times-circle {
+  color: red;
+}
+
+.item-delete {
+  background-color: transparent;
+  border: 0px;
+}
+
+.item-delete:active {
+  transform: scale(0.9);
+}
+
+
+.count-price p{
+  font-family: $text;
+  font-weight: 600;
+  color:$text-color;
+  margin-right: 25%;
+}
+
+.cart-btns {
+  float: right;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+
