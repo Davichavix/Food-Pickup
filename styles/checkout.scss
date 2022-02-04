@@ -1,0 +1,31 @@
+@import "styles/global";
+
+.table-content {
+  width: 800px;
+  background-color: #fff;
+  margin: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+
+  padding: 50px 0 50px 0;
+  font-family: $text;
+  font-size: 18px;
+  font-weight: 400;
+  color: $text-color;
+  line-height: 2;
+}
+.order-details tr{
+  text-align: center;
+}
+
+tr {
+  margin: 10px 0 10px 0;
+}
+
+.checkout-btn-group {
+  display: flex;
+  flex-direction: row;
+}
