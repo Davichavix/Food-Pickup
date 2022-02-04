@@ -20,8 +20,6 @@ const getUserByEmail = (email) => {
     .catch((err) => console.log(err));
 };
 
-exports.getUserByEmail = getUserByEmail;
-
 const getUserById = (id) => {
   const queryString = `SELECT * FROM users WHERE id = $1;`;
 
@@ -35,7 +33,6 @@ const getUserById = (id) => {
     })
     .catch((err) => console.log(err));
 };
-exports.getUserById = getUserById;
 
 const addUser = (user) => {
   const queryString = `
@@ -61,8 +58,6 @@ const addUser = (user) => {
     .catch((err) => console.log(err));
 };
 
-exports.addUser = addUser;
-
 const getAllOrdersByUserId = (user_id, limit = 10) => {
   const queryString = `
   SELECT orders.* FROM orders
@@ -78,8 +73,6 @@ const getAllOrdersByUserId = (user_id, limit = 10) => {
     .catch((err) => console.log(err));
 };
 
-exports.getAllOrdersByUserId = getAllOrdersByUserId;
-
 const getAllOrdersOwner = () => {
   const queryString = `
   SELECT orders.* FROM orders
@@ -93,8 +86,6 @@ const getAllOrdersOwner = () => {
     })
     .catch((err) => console.log(err));
 };
-
-exports.getAllOrdersOwner = getAllOrdersOwner;
 
 const getAllOpenOrders = () => {
   const queryString = `
@@ -110,11 +101,9 @@ const getAllOpenOrders = () => {
     .catch((err) => console.log(err));
 };
 
-exports.getAllOpenOrders = getAllOpenOrders;
-
 const getAllItemsByOrderId = (orderId) => {
   const queryString = `
-  SELECT items.* FROM items
+  SELECT items.*, qty FROM items
   JOIN order_items ON order_items.item_id = items.id
   WHERE order_id = $1;
   `;
@@ -127,17 +116,15 @@ const getAllItemsByOrderId = (orderId) => {
     .catch((err) => console.log(err));
 };
 
-exports.getAllItemsByOrderId = getAllItemsByOrderId;
-
 const addOrder = (order) => {
   const queryString = `
   INSERT INTO orders (
   user_id, created_at
   ) VALUES (
-    $1, $2
+    $1, to_timestamp($2)
   ) RETURNING *`;
 
-  const values = [order.userId, order.created_at];
+  const values = [order.userId, order.createdAt];
 
   return db
     .query(queryString, values)
@@ -146,7 +133,6 @@ const addOrder = (order) => {
     })
     .catch((err) => console.log(err));
 };
-exports.addOrder = addOrder;
 
 const addItemsToOrder = (orderId, orderItems) => {
   const queryString = `
@@ -156,7 +142,7 @@ const addItemsToOrder = (orderId, orderItems) => {
    RETURNING *;`;
 
   const values = orderItems.map((item) => {
-    return [orderId, item.item_id, item.qty];
+    return [orderId, item.itemId, item.qty];
   });
 
   return db
@@ -167,12 +153,10 @@ const addItemsToOrder = (orderId, orderItems) => {
     .catch((err) => console.log(err));
 };
 
-exports.addItemsToOrder = addItemsToOrder;
-
 const updateReadyTimeById = (order_id, time) => {
   const queryString = `
   UPDATE orders
-  SET ready_at = $2
+  SET ready_at = to_timestamp($2)
   WHERE id = $1
   RETURNING *;`;
 
@@ -185,8 +169,6 @@ const updateReadyTimeById = (order_id, time) => {
     })
     .catch((err) => console.log(err));
 };
-
-exports.updateReadyTimeById = updateReadyTimeById;
 
 const completeOrder = (order_id) => {
   const queryString = `
@@ -203,4 +185,46 @@ const completeOrder = (order_id) => {
     .catch((err) => console.log(err));
 };
 
-exports.completeOrder = completeOrder;
+const getAllItems = () => {
+  const queryString = `
+  SELECT * FROM items;`;
+
+  return db
+    .query(queryString)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
+const getItemById = (id) => {
+  const queryString = `
+  SELECT * FROM items
+  WHERE id = $1;`;
+
+  return db
+    .query(queryString, [id])
+    .then((res) => {
+      if (res.rows.length < 1) {
+        return null;
+      }
+      return res.rows[0];
+    })
+    .catch((err) => console.log(err));
+};
+
+module.exports = {
+  getUserByEmail,         //
+  getUserById,            //
+  getAllOrdersByUserId,   //
+  getAllOrdersOwner,      //
+  getAllOpenOrders,       //
+  getAllItemsByOrderId,   //
+  getAllItems,            //
+  getItemById,            //
+  addUser,                //
+  addOrder,               //incomplete
+  addItemsToOrder,        //incomplete
+  updateReadyTimeById,    //incomplete
+  completeOrder,          //
+};
