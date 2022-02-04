@@ -5,10 +5,7 @@
   background-color: #fff;
   margin: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
+  display: block;
 
   padding: 50px 0 50px 0;
   font-family: $text;
@@ -17,15 +14,31 @@
   color: $text-color;
   line-height: 2;
 }
-.order-details tr{
-  text-align: center;
+
+.checkout-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  margin: 0 15% 0 15%;
 }
 
-tr {
-  margin: 10px 0 10px 0;
+.order-details tr{
+  // text-align: center;
 }
+
+// tr {
+//   margin: 10px 0 10px 0;
+// }
+
+
+// .checkout-price {
+//   display: flex;
+//   flex-direction: column;
+// }
 
 .checkout-btn-group {
   display: flex;
   flex-direction: row;
+  margin-top: 50px;
 }
