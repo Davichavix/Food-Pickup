@@ -5,14 +5,16 @@
   background-color: #fff;
   margin: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  display: block;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 50px 0 50px 0;
   font-family: $text;
   font-size: 18px;
   font-weight: 400;
   color: $text-color;
   line-height: 2;
+  margin-top: 10px;
 }
 
 .checkout-table {
@@ -24,21 +26,40 @@
 }
 
 .order-details tr{
-  // text-align: center;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 50px;
+  line-height: 1.5;
+  font-weight: 600;
 }
 
-// tr {
-//   margin: 10px 0 10px 0;
-// }
 
 
-// .checkout-price {
-//   display: flex;
-//   flex-direction: column;
-// }
+.checkout-price {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  width: 40%;
+}
 
 .checkout-btn-group {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  width: 60%;
   margin-top: 50px;
+}
+
+
+.checkout-button {
+  height: 60px;
+  width: 200px;
+}
+
+.checkout-divider {
+  width: 100%;
+  border-top: 1px solid $text-color;
+  margin: 50px 0 30px 0;
 }
