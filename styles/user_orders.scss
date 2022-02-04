@@ -1,0 +1,29 @@
+@import "styles/global";
+
+table.orders-content {
+  table-layout: fixed;
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: space-between;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 50px;
+}
+
+td {
+  font-family: $text;
+  font-weight: 400;
+  font-size: 18px;
+  color: $text-color;
+  height: 100px;
+  border-width: 1px 0;
+  border-color: $text-color;
+  border-style: solid;
+}
+
+
+
+.details-button {
+  height: 40px;
+  width: 180px;
+}
