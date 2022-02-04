@@ -46,7 +46,6 @@
   font-weight: 600;
   font-family: $text;
   font-size: 18px;
-  padding: 0px;
 }
 
 .col {
@@ -163,10 +162,11 @@ input {
 }
 
 
-.count-price {
+.count-price p{
   font-family: $text;
+  font-weight: 600;
   color:$text-color;
-
+  margin-right: 25%;
 }
 
 .cart-btns {
