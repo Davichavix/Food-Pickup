@@ -1,6 +1,6 @@
 // Client facing scripts here
 $(document).ready(function() {
-  const addtoCartBtn = document.getElementsByClassName('item')
+  const addtoCartBtn = document.getElementsByClassName('add-button')
   let items = [];
   for (let i = 0; i < addtoCartBtn.length; i++) {
     addtoCartBtn[i].addEventListener('click', function(e) {
@@ -12,6 +12,8 @@ $(document).ready(function() {
       }
       items.push(item);
       localStorage.setItem('items', JSON.stringify(items));
+      console.log(localStorage.getItem('items'));
+      $('.badge').text(JSON.parse(localStorage.getItem('items')).length);
     })
   }
 })
