@@ -15,11 +15,11 @@ $(document).ready(function() {
         "description": e.target.parentElement.children[1].children[1].textContent,
         "price": e.target.parentElement.children[2].textContent,
         "qty": 1
-      }
+      };
       items[itemId] = item;
       localStorage.setItem('items', JSON.stringify(items));
-      $('.badge').text(JSON.parse(localStorage.getItem('items')).length);
+      $('.badge').text(Object.keys(JSON.parse(localStorage.getItem('items'))).length);
     })
   }
-  $('.badge').text(JSON.parse(localStorage.getItem('items')).length);
+  $('.badge').text(Object.keys(JSON.parse(localStorage.getItem('items'))).length);
 })
