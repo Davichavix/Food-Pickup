@@ -30,9 +30,9 @@
 
     <!-- Menu items -->
     <% for (const item of items) { %>
-    <section class="item">
+    <section class="item" id=<%= item.id %>>
       <img src=<%= item.image_url %> class="item-image">
-      <div class="item-text">
+      <div class="item-text" attr=>
         <h3><%= item.name %></h3>
         <p><%= item.description %></p>
       </div>
