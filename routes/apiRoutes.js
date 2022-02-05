@@ -2,7 +2,7 @@ module.exports = function (router, database) {
   router.get("/", (req, res) => {
     database
       .getAllItems()
-      .then((items) => res.send((items)))
+      .then((items) => res.send(items))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -12,7 +12,7 @@ module.exports = function (router, database) {
   router.get("/items", (req, res) => {
     database
       .getAllItems()
-      .then((items) => res.send((items)))
+      .then((items) => res.send(items))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -22,7 +22,7 @@ module.exports = function (router, database) {
   router.get("/items/:id", (req, res) => {
     database
       .getItemById(req.params.id)
-      .then((item) => res.send((item)))
+      .then((item) => res.send(item))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -45,7 +45,7 @@ module.exports = function (router, database) {
   router.get("/users/:email", (req, res) => {
     database
       .getUserByEmail(req.params.email)
-      .then((user) => res.send((user)))
+      .then((user) => res.send(user))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -55,7 +55,7 @@ module.exports = function (router, database) {
   router.get("/users/id/:id", (req, res) => {
     database
       .getUserById(req.params.id)
-      .then((user) => res.send((user)))
+      .then((user) => res.send(user))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -65,7 +65,7 @@ module.exports = function (router, database) {
   router.get("/orders/:id", (req, res) => {
     database
       .getAllItemsByOrderId(req.params.id)
-      .then((orders) => res.send((orders)))
+      .then((orders) => res.send(orders))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -75,7 +75,7 @@ module.exports = function (router, database) {
   router.get("/orders/user/:id", (req, res) => {
     database
       .getAllOrdersByUserId(req.params.id)
-      .then((orders) => res.send((orders)))
+      .then((orders) => res.send(orders))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -85,7 +85,7 @@ module.exports = function (router, database) {
   router.get("/orders/items/:id", (req, res) => {
     database
       .getAllItemsByOrderId(req.params.id)
-      .then((items) => res.send((items)))
+      .then((items) => res.send(items))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -95,7 +95,7 @@ module.exports = function (router, database) {
   router.get("/admin", (req, res) => {
     database
       .getAllOrdersOwner()
-      .then((orders) => res.send((orders)))
+      .then((orders) => res.send(orders))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -105,7 +105,7 @@ module.exports = function (router, database) {
   router.get("/admin/open", (req, res) => {
     database
       .getAllOpenOrders()
-      .then((orders) => res.send((orders)))
+      .then((orders) => res.send(orders))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -117,7 +117,7 @@ module.exports = function (router, database) {
 
     database
       .addUser(user)
-      .then((user) => res.send((user)))
+      .then((user) => res.send(user))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -126,15 +126,16 @@ module.exports = function (router, database) {
 
   //will need to complete this as we approach cart screen
   router.post("/orders", (req, res) => {
-    const userId = 1;
+    const { userId, orderItems } = req.body;
     const createdAt = new Date(Date.now()) / 1000;
 
     database
       .addOrder({ userId, createdAt })
       .then((order) => {
-        // console.log(order.id);
-        res.send(order);
+        const orderId = order.id;
+        database.addItemsToOrder(orderId, orderItems);
       })
+      .then((data) => res.send(data))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -143,7 +144,7 @@ module.exports = function (router, database) {
 
   router.put("/orders/:id", (req, res) => {
     const orderId = req.params.id;
-    const time = new Date(Date.now())/1000; //Test Code, Will need to add in time
+    const time = new Date(Date.now()) / 1000; //Test Code, Will need to add in time
 
     database
       .updateReadyTimeById(orderId, time)

@@ -8,10 +8,8 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const apiRoutes = require("./routes/apiRoutes");
-const database = require('./routes/databaseRoutes');
+const database = require("./routes/databaseRoutes");
 const cartRoutes = require("./routes/cartRoutes");
-
-
 
 // PG database client/connection setup
 // const { Pool } = require("pg");
@@ -54,17 +52,23 @@ app.use("/cart", cartRoutes(cartRouter));
 
 app.get("/", (req, res) => {
   database
-  .getAllItems()
-  .then((items) => {
-    let templateVars = {
-      items: items
-    }
-    res.render('index', templateVars)})
-  .catch((e) => {
-    console.log(e);
-    res.send(e);
-  });
+    .getAllItems()
+    .then((items) => {
+      let templateVars = {
+        items: items,
+      };
+      res.render("index", templateVars);
+    })
+    .catch((e) => {
+      console.log(e);
+      res.send(e);
+    });
 });
+
+// Will need to move this into a separate router
+app.get('/checkout', (req, res) => {
+  res.render('checkout');
+})
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
