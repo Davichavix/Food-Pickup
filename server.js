@@ -91,6 +91,10 @@ app.get('/checkout', (req, res) => {
   res.render('checkout');
 })
 
+app.get('/signin', (req, res) => {
+  res.render('signin');
+})
+
 //remove stop here
 
 app.listen(PORT, () => {
