@@ -1,5 +1,6 @@
 $(document).ready(() => {
 
+
   loadOrders();
 
 });
@@ -32,6 +33,13 @@ $(document).ready(() => {
   }
 
   const renderOrders = (orders) => {
+
+    if(orders['orders'].length===0){
+      console.log("here");
+      const container = $('main');
+      container.append(`<p>You have no orders. View our <a href='/'>Menu</a> & get a bubble tea!</p>`);
+    }
+
     for (const order of orders['orders']) {
       const newOrder = creatOrder(order);
       const container = $('.orders-content');
@@ -41,8 +49,10 @@ $(document).ready(() => {
   }
 
   const loadOrders = () => {
-    $.get(`/api/orders/user/2`).then((res) => {
-      console.log(res);
+    const path =window.location.pathname;
+    const user_id = path.split('/')[2];
+
+    $.get(`/api/orders/user/${user_id}`).then((res) => {
       renderOrders(res);
     });
   }
