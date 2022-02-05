@@ -79,6 +79,31 @@ const getAllOrdersByUserId = (user_id, limit = 10) => {
     .catch((err) => console.log(err));
 };
 
+const getOrderDetailsByOrderId = (order_id) => {
+  const queryString = `
+  SELECT CONCAT(users.first_name, ' ', users.last_name) as user_name,
+  CONCAT('Order No. ', orders.id) as order_number,
+  CASE
+    WHEN orders.ready_at IS NULL THEN 'Unconfirmed'
+    ELSE 'Confirmed'
+  END as status,
+  users.phone_number,
+  users.email,
+  orders.created_at,
+  orders.ready_at
+  FROM orders
+  JOIN users ON users.id = orders.user_id
+  WHERE orders.id = $1;
+  `;
+
+  return db
+    .query(queryString, [order_id])
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
 const getAllOrdersOwner = () => {
   const queryString = `
   SELECT orders.* FROM orders
@@ -233,4 +258,5 @@ module.exports = {
   addItemsToOrder,        //incomplete
   updateReadyTimeById,    //incomplete
   completeOrder,          //
+  getOrderDetailsByOrderId
 };

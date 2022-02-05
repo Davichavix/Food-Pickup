@@ -82,6 +82,16 @@ module.exports = function (router, database) {
       });
   });
 
+  router.get("/orders/details/:id", (req, res) => {
+    database
+      .getOrderDetailsByOrderId(req.params.id)
+      .then((order) => res.send({order}))
+      .catch((e) => {
+        console.log(e);
+        res.send(e);
+      });
+  });
+
   router.get("/orders/items/:id", (req, res) => {
     database
       .getAllItemsByOrderId(req.params.id)
