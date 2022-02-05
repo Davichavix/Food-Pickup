@@ -1,12 +1,13 @@
 $(() => {
   const items = JSON.parse(localStorage.getItem("items"));
+  const itemsArray = Object.values(items);
 
   const $cart = $("div.layout-inline.row.th");
 
-  const itemRows = items.map((item) => {
+  const itemRows = itemsArray.map((item) => {
     const total = parseFloat(item.price * item.qty).toFixed(2);
     const html = `
-      <section class="layout-inline row list">
+      <section class="layout-inline row list" id="${item.id}">
 
         <div class="col col-pro layout-inline">
         <span class="item-display">
@@ -51,7 +52,7 @@ $(() => {
     if (value > 1) {
       value--;
     } else {
-      value = 0;
+      value = 1;
     }
 
     $input.val(value).trigger("change");
@@ -81,7 +82,7 @@ $(() => {
     let total = parseFloat($total.text().split("$").join("")).toFixed(2);
 
     if (value < 0 || isNaN(value)) {
-      input.val(0);
+      input.val(1);
     } else if (value > 100) {
       input.val(100);
     }
@@ -91,16 +92,22 @@ $(() => {
 
     calculateTotal();
 
-    $("div.col-qty input").each(function (index) {
-      const qty = $(this).val();
-      items[index] = { ...items[index], qty };
-      localStorage.setItem("items", JSON.stringify(items));
-    });
+    const id = $(this).closest("section").attr("id");
+    items[id].qty = value;
+    localStorage.setItem("items", JSON.stringify(items));
   });
 
   $(".item-delete").on("click", function (e) {
     e.preventDefault();
     const $itemRow = $(this).closest("section");
+    const $input = $itemRow.find("input");
+    console.log($input);
+    const id = $itemRow.attr("id");
 
+    $itemRow.remove();
+    delete items[id];
+    calculateTotal();
+
+    localStorage.setItem("items", JSON.stringify(items));
   });
 });
