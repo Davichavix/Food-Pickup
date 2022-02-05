@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/admin_history.css" type="text/css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <%- include('partials/admin_header') %>
+  <main>
+    <h1>Hsitory Orders</h1>
+
+    <!-- Order list -->
+    <div>
+      <table class="orders-content">
+        <tbody>
+          <tr  class="row">
+            <td>
+              Order No. 111
+            </td>
+            <td>
+              user_name
+            </td>
+            <td>
+              order_date
+            </td>
+            <td>
+              order_staus
+            </td>
+            <td>
+              <button type="button" class="btn-trans details-button">Details</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <!-- Order lisr end -->
+
+  </main>
+
+</body>
+
+</html>

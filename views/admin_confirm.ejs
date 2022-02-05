@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Home Page</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/admin_confirm.css" type="text/css" />
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <%- include('partials/admin_header') %>
+  <main>
+    <h1>Order No. 111</h1>
+
+    <div class="table-content">
+      <div class="confirm-table">
+        <form action="#" class="confirm-form">
+          <label for="lang">Will be ready in: </label>
+          <select name="languages" id="lang">
+            <option value="" disabled selected>Select a time</option>
+            <option value="15min">15 min</option>
+            <option value="30min">30 min</option>
+            <option value="45min">45 min</option>
+            <option value="60min">1 hr</option>
+            <option value="75min">1 hr 15 min</option>
+            <option value="90min">1 hr 30 min</option>
+            <option value="105min">1 hr 45 min</option>
+            <option value="120min">2 hr</option>
+          </select>
+        </form>
+      </div>
+
+      <div class="checkout-table">
+        <table>
+          <tbody>
+              <tr>
+                  <td>Order status:</td>
+                  <td>Unconfirmed</td>
+              </tr>
+              <tr>
+                <td>Name:</td>
+                <td>user_name</td>
+            </tr>
+              <tr>
+                  <td>Phone Number:</td>
+                  <td>123-123-1234</td>
+              </tr>
+              <tr>
+                <td>Email:</td>
+                <td>lighthouse@gmail.com</td>
+              </tr>
+              <tr>
+                <td>Placed at:</td>
+                <td>2022-01-11 01:01:01</td>
+              </tr>
+              <tr>
+                <td>Pickup at:</td>
+                <td>Unconfirmed</td>
+              </tr>
+              <tr>
+                <td>Order details:</td>
+                  <table class="order-details">
+                    <tr>
+                      <td>Bubble Tea</td>
+                      <td>x 2</td>
+                    </tr>
+                    <tr>
+                      <td>Mango Slush</td>
+                      <td>  x 1</td>
+                    </tr>
+                </table>
+              </tr>
+              <hr class="checkout-divider">
+              <div class="checkout-price">
+                <table>
+                <tr>
+                  <td>Subtotal:</td>
+                  <td>$100</td>
+                </tr>
+                <tr>
+                  <td>Tax:</td>
+                  <td>$5</td>
+                </tr>
+                <tr>
+                  <td>Total:</td>
+                  <td>$105</td>
+                </tr>
+                </table>
+            </div>
+          </tbody>
+        </table>
+      </div>
+
+      <button type="button" class="btn-trans back-button">Back</button>
+      <button type="button" class="btn confirm-button">Confirm</button>
+
+    </div>
+  </main>
+
+</body>
+
+</html>
