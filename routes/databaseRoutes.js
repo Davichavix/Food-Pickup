@@ -60,7 +60,13 @@ const addUser = (user) => {
 
 const getAllOrdersByUserId = (user_id, limit = 10) => {
   const queryString = `
-  SELECT orders.* FROM orders
+  SELECT * , CONCAT(users.first_name, ' ', users.last_name) as user_name,
+  CONCAT('Order No. ', orders.id) as order_number,
+  CASE
+    WHEN orders.ready_at IS NULL THEN 'Unconfirmed'
+    ELSE 'Confirmed'
+  END as status
+  FROM orders
   JOIN users ON users.id = orders.user_id
   WHERE user_id = $1;
   `;
@@ -142,7 +148,7 @@ const addItemsToOrder = (orderId, orderItems) => {
    RETURNING *;`;
 
   const values = orderItems.map((item) => {
-    return [orderId, item.itemId, item.qty];
+    return [orderId, item.id, item.qty];
   });
 
   return db
