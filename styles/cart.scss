@@ -1,4 +1,4 @@
-@import 'styles/global';
+@import "styles/global";
 
 .cart-items {
   overflow: hidden;
@@ -97,7 +97,7 @@
   right: 0.5em;
   font-family: $text;
   border: 0.16em solid #fff;
-  padding: 0 0.22em 0 0.25em ;
+  padding: 0 0.22em 0 0.25em;
 }
 
 .col-qty > * {
@@ -107,7 +107,6 @@
 .col-qty > input {
   max-width: 2.6em;
 }
-
 
 a.qty {
   width: 1em;
@@ -161,11 +160,10 @@ input {
   transform: scale(0.9);
 }
 
-
-.count-price p{
+.count-price p {
   font-family: $text;
   font-weight: 600;
-  color:$text-color;
+  color: $text-color;
   margin-right: 25%;
 }
 
@@ -176,3 +174,20 @@ input {
   margin-bottom: 100px;
 }
 
+.item-image {
+  width: auto;
+  height: 100px;
+  padding: 0.1rem 1rem 0.1rem 0;
+}
+
+.item-display p {
+  padding: 0 0 0 1rem;
+}
+
+.item-display {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+}

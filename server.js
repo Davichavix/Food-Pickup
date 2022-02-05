@@ -8,9 +8,8 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const apiRoutes = require("./routes/apiRoutes");
-const database = require('./routes/databaseRoutes');
-
-
+const database = require("./routes/databaseRoutes");
+const cartRoutes = require("./routes/cartRoutes");
 
 // PG database client/connection setup
 // const { Pool } = require("pg");
@@ -40,9 +39,11 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const apiRouter = express.Router();
+const cartRouter = express.Router();
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api", apiRoutes(apiRouter, database));
+app.use("/cart", cartRoutes(cartRouter));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -51,16 +52,17 @@ app.use("/api", apiRoutes(apiRouter, database));
 
 app.get("/", (req, res) => {
   database
-  .getAllItems()
-  .then((items) => {
-    let templateVars = {
-      items: items
-    }
-    res.render('index', templateVars)})
-  .catch((e) => {
-    console.log(e);
-    res.send(e);
-  });
+    .getAllItems()
+    .then((items) => {
+      let templateVars = {
+        items: items,
+      };
+      res.render("index", templateVars);
+    })
+    .catch((e) => {
+      console.log(e);
+      res.send(e);
+    });
 });
 
 app.get("/orders/:id", (req, res) => {
@@ -84,6 +86,10 @@ app.get("/admin/id", (req, res) => {
   res.render("admin_id");
 });
 
+// Will need to move this into a separate router
+app.get('/checkout', (req, res) => {
+  res.render('checkout');
+})
 
 //remove stop here
 
