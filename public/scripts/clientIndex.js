@@ -1,4 +1,12 @@
 // Client facing scripts here
+const getTotalItemQty = (Object) => {
+  let sum = 0;
+  for (const item in Object) {
+   sum += Object[item]['qty'];
+  }
+  return sum;
+}
+
 $(document).ready(function() {
   let items = {};
   if(localStorage.getItem('items') !== null) {
@@ -16,10 +24,10 @@ $(document).ready(function() {
         "price": e.target.parentElement.children[2].textContent,
         "qty": 1
       };
-      items[itemId] = item;
+      items[itemId] ? items[itemId]['qty'] += 1 : items[itemId] = item;
       localStorage.setItem('items', JSON.stringify(items));
-      $('.badge').text(Object.keys(JSON.parse(localStorage.getItem('items'))).length);
+      $('.badge').text(getTotalItemQty(items));
     })
   }
-  $('.badge').text(Object.keys(JSON.parse(localStorage.getItem('items'))).length);
+  $('.badge').text(getTotalItemQty(items));
 })
