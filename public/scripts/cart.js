@@ -90,7 +90,17 @@ $(() => {
     $total.text(`$${total}`).trigger("change");
 
     calculateTotal();
+
+    $("div.col-qty input").each(function (index) {
+      const qty = $(this).val();
+      items[index] = { ...items[index], qty };
+      localStorage.setItem("items", JSON.stringify(items));
+    });
   });
 
-  $()
+  $(".item-delete").on("click", function (e) {
+    e.preventDefault();
+    const $itemRow = $(this).closest("section");
+
+  });
 });
