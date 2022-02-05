@@ -110,4 +110,28 @@ $(() => {
 
     localStorage.setItem("items", JSON.stringify(items));
   });
+
+  //Will need code later for /checkout
+  // $("button.checkout").on("click", function (e) {
+  //   e.preventDefault();
+  //   // const userId = 1; //add userId from cookie session
+  //   // const items = Object.values(JSON.parse(localStorage.getItem('items')));
+  //   // const orderItems = items.map(item => {
+  //   //   return {
+  //   //     id: item.id,
+  //   //     qty: item.qty
+  //   //   }
+  //   // })
+
+  //   // $.ajax({
+  //   //   url: "/api/orders",
+  //   //   data: {userId, orderItems},
+  //   //   type: "POST"
+  //   // }).then(res => {
+  //   //   res.render("")
+  //   // })
+
+  // })
+
+
 });
