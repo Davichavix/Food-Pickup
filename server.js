@@ -63,8 +63,12 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/orders/:id", (req, res) => {
+app.get("/orders/:user_id", (req, res) => {
   res.render("user_orders");
+});
+
+app.get("/orders/:user_id/:order_id", (req, res) => {
+  res.render("user_orders_id");
 });
 
 //adjust as needed
