@@ -64,7 +64,7 @@ module.exports = function (router, database) {
 
   router.get("/orders/:id", (req, res) => {
     database
-      .getAllOrdersByUserId(req.params.id)
+      .getAllItemsByOrderId(req.params.id)
       .then((orders) => res.send(JSON.stringify(orders)))
       .catch((e) => {
         console.log(e);
@@ -74,7 +74,7 @@ module.exports = function (router, database) {
 
   router.get("/orders/user/:id", (req, res) => {
     database
-      .getAllItemsByOrderId(req.params.id)
+      .getAllOrdersByUserId(req.params.id)
       .then((orders) => res.send(JSON.stringify(orders)))
       .catch((e) => {
         console.log(e);
