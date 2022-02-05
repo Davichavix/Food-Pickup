@@ -1,4 +1,3 @@
-
 $(() => {
   const $cartItems = $(`
   <div class="col col-pro layout-inline">
@@ -16,29 +15,32 @@ $(() => {
       const total = parseFloat(item.price * item.qty).toFixed(2);
       const html = `
       <section class="layout-inline row list">
-      <div class="col col-pro layout-inline">
-      <p>${item.name}</p>
-      </div>
 
-      <div class="col col-price col-numeric align-center ">
-      <p>$${item.price}</p>
-      </div>
+        <div class="col col-pro layout-inline">
+        <span class="item-display">
+        <img class="item-image" src='${item.image_url}' alt='${item.name}'/>
+        <p>${item.name}</p></span>
+        </div>
 
-      <div class="col col-qty layout-inline">
-        <a href="#" class="qty qty-minus">-</a>
-          <input type="numeric" value="${item.qty}" />
-        <a href="#" class="qty qty-plus">+</a>
-      </div>
+        <div class="col col-price col-numeric align-center ">
+        <p>$${item.price}</p>
+        </div>
 
-      <div class="col col-total col-numeric">
-        <p>$${total}</p>
-      </div>
+        <div class="col col-qty layout-inline">
+          <a href="#" class="qty qty-minus">-</a>
+            <input type="numeric" value="${item.qty}" />
+          <a href="#" class="qty qty-plus">+</a>
+        </div>
 
-      <div class="col col-delete align-center">
-        <button class="item-delete">
-          <i class="far fa-times-circle fa-lg"></i>
-        </button>
-      </div>
+        <div class="col col-total col-numeric">
+          <p>$${total}</p>
+        </div>
+
+        <div class="col col-delete align-center">
+          <button class="item-delete">
+            <i class="far fa-times-circle fa-lg"></i>
+          </button>
+        </div>
       </section>
       `;
 
@@ -97,13 +99,5 @@ $(() => {
 
       calculateTotal();
     });
-
-
-
-
-
-
   });
-
-
 });
