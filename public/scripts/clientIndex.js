@@ -12,7 +12,6 @@ $(document).ready(function() {
       }
       items.push(item);
       localStorage.setItem('items', JSON.stringify(items));
-      console.log(localStorage.getItem('items'));
       $('.badge').text(JSON.parse(localStorage.getItem('items')).length);
     })
   }
