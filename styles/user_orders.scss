@@ -21,7 +21,12 @@ td {
   border-style: solid;
 }
 
-
+p {
+  font-family: $text;
+  font-weight: 300;
+  font-size: 25px;
+  text-align: center;
+}
 
 .details-button {
   height: 40px;
