@@ -11,11 +11,10 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
-  <script type="text/javascript" src="/scripts/clientIndex.js"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
-
+  <link rel="stylesheet" href="/styles/admin_history.css" type="text/css" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,29 +23,36 @@
 </head>
 
 <body>
-  <%- include('partials/_header') %>
+  <%- include('partials/admin_header') %>
   <main>
-    <h1>Menu</h1>
+    <h1>Hsitory Orders</h1>
 
-    <!-- Menu items -->
-    <% for (const item of items) { %>
-    <section class="item">
-      <img src=<%= item.image_url %> class="item-image">
-      <div class="item-text">
-        <h3><%= item.name %></h3>
-        <p><%= item.description %></p>
-      </div>
-      <p class="item-price"><%= item.price %></p>
-      <button type="button" class="add-button">Add to cart</button>
-    </section>
-    <% } %>
-    <!-- Menu end -->
+    <!-- Order list -->
+    <div>
+      <table class="orders-content">
+        <tbody>
+          <tr  class="row">
+            <td>
+              Order No. 111
+            </td>
+            <td>
+              user_name
+            </td>
+            <td>
+              order_date
+            </td>
+            <td>
+              order_staus
+            </td>
+            <td>
+              <button type="button" class="btn-trans details-button">Details</button>
+            </td>
+          </tr>
 
-    <section class="cart">
-      <button type="button" class=" btn cart-button">Cart</button>
-    </section>
-    <span class="badge">0</span>
-
+        </tbody>
+      </table>
+    </div>
+    <!-- Order lisr end -->
 
   </main>
 
