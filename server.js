@@ -68,6 +68,28 @@ app.get("/", (req, res) => {
     });
 });
 
+app.get("/orders/:id", (req, res) => {
+  res.render("user_orders");
+});
+
+//adjust as needed
+app.get("/admin/open", (req, res) => {
+  res.render("admin_open");
+});
+
+app.get("/admin/confirm", (req, res) => {
+  res.render("admin_confirm");
+});
+
+app.get("/admin/history", (req, res) => {
+  res.render("admin_history");
+});
+
+app.get("/admin/id", (req, res) => {
+  res.render("admin_id");
+});
+
+//remove stop here
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
