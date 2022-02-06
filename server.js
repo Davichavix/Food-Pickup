@@ -46,7 +46,7 @@ const twilioRouter = express.Router();
 // Note: Feel free to replace the example routes below with your own
 app.use("/api", apiRoutes(apiRouter, database));
 app.use("/cart", cartRoutes(cartRouter));
-app.use("/twilio", twilioRoutes(twilioRouter));
+// app.use("/twilio", twilioRoutes(twilioRouter));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -96,6 +96,10 @@ app.get('/checkout', (req, res) => {
 
 app.get('/signin', (req, res) => {
   res.render('signin');
+})
+
+app.get('/checkout/complete', (req, res) => {
+  res.render('checkout-complete');
 })
 
 //remove stop here
