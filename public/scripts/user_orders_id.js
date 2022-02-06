@@ -46,19 +46,21 @@ $(document).ready(() => {
 
     <hr class="checkout-divider">
 
-      <table>
+    <div class='total-table'>
+      <table class='total'>
         <tr>
-          <td>Subtotal:</td>
+          <td id='title'>Subtotal:</td>
           <td id='sub'></td>
         </tr>
         <tr>
-          <td>Tax:</td>
+          <td id='title'>Tax:</td>
           <td id='tax'></td>
         </tr>
         <tr>
-          <td>Total:</td>
+          <td id='title'>Total:</td>
           <td id='total'></td>
         </tr>
+    </div>
       </table>
     `
 
@@ -86,14 +88,25 @@ $(document).ready(() => {
   }
 
   const renderItems = (items) => {
+    let subtotal = 0;
+    let tax = 0;
+    let total = 0;
+
     for (const item of items['items']) {
       console.log(item);
       console.log(item['name']);
       // const orderItem = createOrderItems(item);
       const container = $('.items')
       container.append(`<p style='text-indent: 50px;line-height: 1.5;'>${item['name']} x${item['qty']}</p>`);
+      subtotal += item['price'] * item['qty'];
     }
 
+    tax = Math.round(subtotal * 0.05 * 100) / 100;
+    total = subtotal + tax;
+
+    $('#sub').text(`$${subtotal}`);
+    $('#tax').text(`$${tax}`);
+    $('#total').text(`$${total}`);
   }
 
   const createTotal = () => {
