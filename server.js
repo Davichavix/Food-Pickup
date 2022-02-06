@@ -10,6 +10,8 @@ const morgan = require("morgan");
 const apiRoutes = require("./routes/apiRoutes");
 const database = require("./routes/databaseRoutes");
 const cartRoutes = require("./routes/cartRoutes");
+const twilioRoutes = require("./routes/twilioRoutes");
+const signinRoutes = require("./routes/siginRoutes");
 
 // PG database client/connection setup
 // const { Pool } = require("pg");
@@ -40,10 +42,14 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const apiRouter = express.Router();
 const cartRouter = express.Router();
+const twilioRouter = express.Router();
+const signinRouter = express.Router();
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api", apiRoutes(apiRouter, database));
 app.use("/cart", cartRoutes(cartRouter));
+// app.use("/twilio", twilioRoutes(twilioRouter));
+app.use("/signin", signinRoutes(signinRouter));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -97,6 +103,10 @@ app.get('/checkout', (req, res) => {
 
 app.get('/signin', (req, res) => {
   res.render('signin');
+})
+
+app.get('/checkout/complete', (req, res) => {
+  res.render('checkout-complete');
 })
 
 //remove stop here
