@@ -78,7 +78,7 @@ app.get("/admin", (req, res) => {
   res.render("admin_open");
 });
 
-app.get("/admin/confirm", (req, res) => {
+app.get("/admin/:id/confirm", (req, res) => {
   res.render("admin_confirm");
 });
 
