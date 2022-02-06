@@ -133,7 +133,7 @@ module.exports = function (router, database) {
       .addOrder({ userId, createdAt })
       .then((order) => {
         const orderId = order.id;
-        database.addItemsToOrder(orderId, orderItems);
+        return database.addItemsToOrder(orderId, orderItems);
       })
       .then((data) => res.send(data))
       .catch((e) => {
