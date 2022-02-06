@@ -95,7 +95,7 @@ module.exports = function (router, database) {
   router.get("/orders/items/:id", (req, res) => {
     database
       .getAllItemsByOrderId(req.params.id)
-      .then((items) => res.send(JSON.stringify(items)))
+      .then((items) => res.send({items}))
       .catch((e) => {
         console.log(e);
         res.send(e);
