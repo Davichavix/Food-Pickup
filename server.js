@@ -10,6 +10,7 @@ const morgan = require("morgan");
 const apiRoutes = require("./routes/apiRoutes");
 const database = require("./routes/databaseRoutes");
 const cartRoutes = require("./routes/cartRoutes");
+const checkoutRoutes = require("./routes/checkoutRoutes");
 const twilioRoutes = require("./routes/twilioRoutes");
 const signinRoutes = require("./routes/siginRoutes");
 
@@ -42,12 +43,14 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 const apiRouter = express.Router();
 const cartRouter = express.Router();
+const checkoutRouter = express.Router();
 const twilioRouter = express.Router();
 const signinRouter = express.Router();
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api", apiRoutes(apiRouter, database));
 app.use("/cart", cartRoutes(cartRouter));
+app.use("/checkout", checkoutRoutes(checkoutRouter, database));
 // app.use("/twilio", twilioRoutes(twilioRouter));
 app.use("/signin", signinRoutes(signinRouter));
 // Note: mount other resources here, using the same pattern above
@@ -96,17 +99,9 @@ app.get("/admin/id", (req, res) => {
   res.render("admin_id");
 });
 
-// Will need to move this into a separate router
-app.get('/checkout', (req, res) => {
-  res.render('checkout');
-})
 
 app.get('/signin', (req, res) => {
   res.render('signin');
-})
-
-app.get('/checkout/complete', (req, res) => {
-  res.render('checkout-complete');
 })
 
 //remove stop here
