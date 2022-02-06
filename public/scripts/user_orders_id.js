@@ -10,58 +10,62 @@ $(document).ready(() => {
 
   const creatOrder = (orderData) => {
     const html = `
-    <table>
-      <tbody>
-        <tr>
-            <td>Order status:</td>
-            <td>${orderData.status}</td>
-        </tr>
-        <tr>
-          <td>Name:</td>
-          <td>${orderData.user_name}</td>
-        </tr>
-        <tr>
-            <td>Phone Number:</td>
-            <td>${orderData.phone_number}</td>
-        </tr>
-        <tr>
-          <td>Email:</td>
-          <td>${orderData.email}</td>
-        </tr>
-        <tr>
-          <td>Placed at:</td>
-          <td>${orderData.created_at}</td>
-        </tr>
-        <tr>
-          <td>Pickup at:</td>
-          <td>${orderData.ready_at}</td>
-        </tr>
+        <table>
+          <tbody>
+            <tr>
+                <td>Order status:</td>
+                <td>${orderData.status}</td>
+            </tr>
+            <tr>
+              <td>Name:</td>
+              <td>${orderData.user_name}</td>
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td>${orderData.phone_number}</td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td>${orderData.email}</td>
+            </tr>
+            <tr>
+              <td>Placed at:</td>
+              <td>${orderData.created_at}</td>
+            </tr>
+            <tr>
+              <td>Pickup at:</td>
+              <td>${orderData.ready_at}</td>
+            </tr>
 
-      </tbody>
-    </table>
+          </tbody>
+        </table>
 
-    <p>Order items:</p>
+        <p>Order items:</p>
 
-    <section class='items'></section>
+        <section class='items'></section>
 
-    <hr class="checkout-divider">
+        <hr class="checkout-divider">
 
-    <div class='total-table'>
-      <table class='total'>
-        <tr>
-          <td id='title'>Subtotal:</td>
-          <td id='sub'></td>
-        </tr>
-        <tr>
-          <td id='title'>Tax:</td>
-          <td id='tax'></td>
-        </tr>
-        <tr>
-          <td id='title'>Total:</td>
-          <td id='total'></td>
-        </tr>
-    </div>
+        <div class='total-table'>
+          <table class='total'>
+            <tr>
+              <td id='title'>Subtotal:</td>
+              <td id='sub'></td>
+            </tr>
+            <tr>
+              <td id='title'>Tax:</td>
+              <td id='tax'></td>
+            </tr>
+            <tr>
+              <td id='title'>Total:</td>
+              <td id='total'></td>
+            </tr>
+        </div>
       </table>
+
+      </div>
+        <a href='javascript:history.back()'><button type="button" class="btn back-button">Back</button></a>
+      </div>
     `
 
     return html;
