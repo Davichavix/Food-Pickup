@@ -173,7 +173,7 @@ const addItemsToOrder = (orderId, orderItems) => {
    RETURNING *;`;
 
   const values = orderItems.map((item) => {
-    return [orderId, item.itemId, item.qty];
+    return [orderId, item.id, item.qty];
   });
 
   return db

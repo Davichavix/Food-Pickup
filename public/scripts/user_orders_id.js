@@ -67,19 +67,6 @@ $(document).ready(() => {
     return html;
   }
 
-  // const createOrderItems = (item) => {
-  //   const html = `
-  //     <table class='items'>
-  //       <tr>
-  //         Order items:
-  //       </tr>
-  //     </table>
-  //   `;
-
-  //   return html;
-  // }
-
-
   const renderOrder = (order) => {
 
     const newOrder = creatOrder(order['order'][0]);
@@ -88,14 +75,14 @@ $(document).ready(() => {
   }
 
   const renderItems = (items) => {
+    const all = items['res'];
     let subtotal = 0;
     let tax = 0;
     let total = 0;
 
-    for (const item of items['items']) {
+    for (const item of all) {
       console.log(item);
       console.log(item['name']);
-      // const orderItem = createOrderItems(item);
       const container = $('.items')
       container.append(`<p style='text-indent: 50px;line-height: 1.5;'>${item['name']} x${item['qty']}</p>`);
       subtotal += item['price'] * item['qty'];
@@ -131,22 +118,16 @@ $(document).ready(() => {
   };
 
   const loadOrders = () => {
-    // console.log(window.location.pathname);
     const path =window.location.pathname;
-    // const user_id = path.split('/')[2];
     const order_id = path.split('/')[3];
 
     $.get(`/api/orders/details/${order_id}`).then((res) => {
-      // console.log(res);
 
       renderOrder(res);
 
       $.get(`/api/orders/items/${order_id}`).then((res) => {
-        // console.log(res);
-        renderItems(res);
+        renderItems({res});
       });
-
-
     });
 
 
