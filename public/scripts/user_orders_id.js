@@ -1,7 +1,6 @@
 $(document).ready(() => {
-  // loadTitle();
+  loadTitle();
   loadOrders();
-
 });
 
   //helper funtions
@@ -40,54 +39,83 @@ $(document).ready(() => {
 
       </tbody>
     </table>
+
+    <p>Order items:</p>
+
+    <section class='items'></section>
+
+    <hr class="checkout-divider">
+
+      <table>
+        <tr>
+          <td>Subtotal:</td>
+          <td id='sub'></td>
+        </tr>
+        <tr>
+          <td>Tax:</td>
+          <td id='tax'></td>
+        </tr>
+        <tr>
+          <td>Total:</td>
+          <td id='total'></td>
+        </tr>
+      </table>
     `
 
     return html;
   }
 
-  const createOrderItems = () => {
-    const html = `
-      <table class='items'>
-        <tr>
-          Order items:
-        </tr>
-      </table>
+  // const createOrderItems = (item) => {
+  //   const html = `
+  //     <table class='items'>
+  //       <tr>
+  //         Order items:
+  //       </tr>
+  //     </table>
+  //   `;
 
-      <hr class="checkout-divider">
-
-      <table>
-        <tr>
-          <td>Subtotal:</td>
-          <td>$100</td>
-        </tr>
-        <tr>
-          <td>Tax:</td>
-          <td>$5</td>
-        </tr>
-        <tr>
-          <td>Total:</td>
-          <td>$105</td>
-        </tr>
-      </table>
-    `;
-
-    return html;
-  }
+  //   return html;
+  // }
 
 
   const renderOrder = (order) => {
 
     const newOrder = creatOrder(order['order'][0]);
-    //console.log(newOrder);
     const container = $('.checkout-table');
     container.append(newOrder);
   }
 
-  const renderItems = () => {
-    const orderItems = createOrderItems();
-    const container = $('.checkout-table');
-    container.append(orderItems);
+  const renderItems = (items) => {
+    for (const item of items['items']) {
+      console.log(item);
+      console.log(item['name']);
+      // const orderItem = createOrderItems(item);
+      const container = $('.items')
+      container.append(`<p style='text-indent: 50px;line-height: 1.5;'>${item['name']} x${item['qty']}</p>`);
+    }
+
   }
+
+  const createTotal = () => {
+    const html = `
+      <hr class="checkout-divider">
+
+      <table>
+        <tr>
+          <td>Subtotal:</td>
+          <td id='sub'></td>
+        </tr>
+        <tr>
+          <td>Tax:</td>
+          <td id='tax'></td>
+        </tr>
+        <tr>
+          <td>Total:</td>
+          <td id='total'></td>
+        </tr>
+      </table>
+    `
+  };
 
   const loadOrders = () => {
     // console.log(window.location.pathname);
@@ -97,11 +125,18 @@ $(document).ready(() => {
 
     $.get(`/api/orders/details/${order_id}`).then((res) => {
       // console.log(res);
+
       renderOrder(res);
-      renderItems();
+
+      $.get(`/api/orders/items/${order_id}`).then((res) => {
+        // console.log(res);
+        renderItems(res);
+      });
+
+
     });
 
-    // $.$get(`/api/orders/user/`)
+
   }
 
 const loadTitle = () => {
@@ -110,3 +145,4 @@ const loadTitle = () => {
 
   createTile(order_id);
 }
+
