@@ -22,12 +22,11 @@ $(document).ready(() => {
             ${orderData.status}
           </td>
           <td>
-            <a href="/orders/items/${orderData.id}}"><button type="button" class="btn-trans details-button ">Details</button></a>
+            <a href="/orders/${orderData.user_id}/${orderData.id}"><button type="button" class="btn-trans details-button ">Details</button></a>
           </td>
         </tr>
       </tbody>
     `
-
     return html;
   }
 
