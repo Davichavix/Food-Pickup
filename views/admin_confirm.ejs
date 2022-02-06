@@ -14,6 +14,8 @@
 
   <!-- App JS -->
   <script type="text/javascript" src="/scripts/admin_confirm.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
@@ -29,22 +31,22 @@
 <body>
   <%- include('partials/admin_header') %>
   <main>
-    <h1>Order No. 111</h1>
+    <h1 class='title'></h1>
 
     <div class="table-content">
       <div class="confirm-table">
-        <form action="#" class="confirm-form">
+        <form class="confirm-form">
           <label for="lang">Will be ready in: </label>
-          <select name="languages" id="lang">
+          <select name="time" id="lang">
             <option value="" disabled selected>Select a time</option>
-            <option value="15min">15 min</option>
-            <option value="30min">30 min</option>
-            <option value="45min">45 min</option>
-            <option value="60min">1 hr</option>
-            <option value="75min">1 hr 15 min</option>
-            <option value="90min">1 hr 30 min</option>
-            <option value="105min">1 hr 45 min</option>
-            <option value="120min">2 hr</option>
+            <option value="15">15 min</option>
+            <option value="30">30 min</option>
+            <option value="45">45 min</option>
+            <option value="60">1 hr</option>
+            <option value="75">1 hr 15 min</option>
+            <option value="90">1 hr 30 min</option>
+            <option value="105">1 hr 45 min</option>
+            <option value="120">2 hr</option>
           </select>
         </form>
       </div>

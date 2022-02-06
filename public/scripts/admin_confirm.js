@@ -1,6 +1,15 @@
 $(document).ready(() => {
   loadTitle();
   loadOrders();
+
+  $('.confirm-button').click(() =>{
+    const readyIn = $('#lang').find(':selected').val();
+    if (!readyIn) {
+      alert('Please select a time. ');
+    } else {
+
+    }
+  })
 });
 
   //helper funtions
@@ -62,10 +71,6 @@ $(document).ready(() => {
             </tr>
         </div>
       </table>
-
-      </div>
-        <a href='javascript:history.back()'><button type="button" class="btn back-button">Back</button></a>
-      </div>
     `
 
     return html;
