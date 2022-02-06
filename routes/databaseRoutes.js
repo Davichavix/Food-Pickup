@@ -120,7 +120,15 @@ const getAllOrdersOwner = () => {
 
 const getAllOpenOrders = () => {
   const queryString = `
-  SELECT orders.* FROM orders
+  SELECT *,
+  CONCAT(users.first_name, ' ', users.last_name) as user_name,
+  CONCAT('Order No. ', orders.id) as order_number,
+  CASE
+    WHEN orders.ready_at IS NULL THEN 'Unconfirmed'
+    ELSE 'Confirmed'
+  END as status
+  FROM orders
+  JOIN users ON users.id = orders.user_id
   WHERE completed = FALSE
   ORDER BY created_at ASC;
   `;
