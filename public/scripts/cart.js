@@ -1,6 +1,7 @@
 $(() => {
   const items = JSON.parse(localStorage.getItem("items"));
   const itemsArray = Object.values(items);
+  itemsArray.length > 0 && $("#empty-cart").hide();
 
   const $cart = $("div.layout-inline.row.th");
 
@@ -21,7 +22,7 @@ $(() => {
 
         <div class="col col-qty layout-inline">
           <a href="#" class="qty qty-minus">-</a>
-            <input type="numeric" value="${item.qty}" />
+            <input type="numeric" value="${item.qty}" disabled/>
           <a href="#" class="qty qty-plus">+</a>
         </div>
 
@@ -108,30 +109,9 @@ $(() => {
     delete items[id];
     calculateTotal();
 
+    Object.values(items).length < 1 && $("#empty-cart").show();
     localStorage.setItem("items", JSON.stringify(items));
+
   });
-
-  //Will need code later for /checkout
-  // $("button.checkout").on("click", function (e) {
-  //   e.preventDefault();
-  //   // const userId = 1; //add userId from cookie session
-  //   // const items = Object.values(JSON.parse(localStorage.getItem('items')));
-  //   // const orderItems = items.map(item => {
-  //   //   return {
-  //   //     id: item.id,
-  //   //     qty: item.qty
-  //   //   }
-  //   // })
-
-  //   // $.ajax({
-  //   //   url: "/api/orders",
-  //   //   data: {userId, orderItems},
-  //   //   type: "POST"
-  //   // }).then(res => {
-  //   //   res.render("")
-  //   // })
-
-  // })
-
 
 });

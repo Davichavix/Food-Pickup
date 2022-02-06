@@ -21,5 +21,15 @@ const calculateTotal = () => {
   $subTotal.text(`$${subTotal.toFixed(2)}`).trigger("change");
   $tax.text(`$${tax.toFixed(2)}`).trigger("change");
   $total.text(`$${total.toFixed(2)}`).trigger("change");
+  const totalDetails = { tax, subTotal, total };
+  localStorage.setItem("totalDetails", JSON.stringify(totalDetails));
 };
 
+const formatPhone = (number) => {
+  const format = `(${number.substring(0, 3)}) ${number.substring(
+    3,
+    6
+  )}-${number.substring(6)}`;
+
+  return format;
+};
