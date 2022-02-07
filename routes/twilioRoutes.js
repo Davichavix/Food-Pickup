@@ -28,5 +28,9 @@ const sendTextMessage = function(Name, OrderId, readyTime) {
      from: '+19106315897',
      to: '+17809830537'
    })
-  .then(message => console.log(message.sid));
+  .then(message => console.log(message.sid))
+  .catch((e) => {
+    console.log(e);
+    res.send(e);
+  });
 }
