@@ -12,7 +12,15 @@ const database = require("./routes/databaseRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const checkoutRoutes = require("./routes/checkoutRoutes");
 const twilioRoutes = require("./routes/twilioRoutes");
-const signinRoutes = require("./routes/siginRoutes");
+const signinRoutes = require("./routes/signinRoutes");
+
+const cookieSession = require("cookie-session");
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["key1"],
+  })
+);
 
 // PG database client/connection setup
 // const { Pool } = require("pg");
@@ -52,7 +60,7 @@ app.use("/api", apiRoutes(apiRouter, database));
 app.use("/cart", cartRoutes(cartRouter));
 app.use("/checkout", checkoutRoutes(checkoutRouter, database));
 // app.use("/twilio", twilioRoutes(twilioRouter));
-app.use("/signin", signinRoutes(signinRouter));
+app.use("/signin", signinRoutes(signinRouter, database));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -99,10 +107,9 @@ app.get("/admin/id", (req, res) => {
   res.render("admin_id");
 });
 
-
-app.get('/signin', (req, res) => {
-  res.render('signin');
-})
+// app.get("/signin", (req, res) => {
+//   res.render("signin");
+// });
 
 //remove stop here
 
