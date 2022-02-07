@@ -11,8 +11,12 @@ module.exports = (router, database) => {
       res.send(order)
       let userName = order[0]['user_name'];
       let readyTime = Date(order[0]['created_at']);
-      // sendTextMessage(userName, orderID, readyTime);
+      sendTextMessage(userName, orderID, readyTime);
     })
+    .catch((e) => {
+      console.log(e);
+      res.send(e);
+    });
   })
   return router;
 };
