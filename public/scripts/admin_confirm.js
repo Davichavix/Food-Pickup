@@ -12,18 +12,12 @@ $(document).ready(() => {
       const time = getPickUpTime(timestamp);
             console.log(time);
 
-      // localStorage.setItem('time', time);
-
     if (!prepareTime) {
       alert('Please select a time. ');
     } else {
-      //get order id
       const path =window.location.pathname;
       const id = path.split('/')[2];
 
-      // $.get(`/api/orders/${id}`).then((res => {
-      //   console.log(res);
-      // }));
       $.ajax({
         url: `/api/orders/${id}`,
         data: {id, time},
@@ -31,7 +25,6 @@ $(document).ready(() => {
         success: function() {
         }
       }).then((res) => {
-        // localStorage.clear();
         document.location.href = `/admin/history/${id}`;
       })
     }
@@ -41,7 +34,16 @@ $(document).ready(() => {
   $('.cancel-button').click((e) => {
     e.preventDefault();
 
+    const path =window.location.pathname;
+    const id = path.split('/')[2];
 
+    $.ajax({
+      url: `/api/orders/cancel/${id}`,
+      data: {id},
+      type: "POST",
+    }).then((res) => {
+      document.location.href = `/admin/history/${id}`;
+    })
   })
 });
 
