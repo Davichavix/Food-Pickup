@@ -48,6 +48,7 @@ $(() => {
       }).then((order) => {
         localStorage.clear();
         document.location.href = "/checkout/complete";
+        return $.get(`/twilio/users/${1}`);
       })
     });
   });
