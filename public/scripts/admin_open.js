@@ -6,6 +6,8 @@ $(document).ready(() => {
 
   //helper funtions
   const creatOrder = (orderData) => {
+    const createdAt = (orderData.created_at.slice(0, 19)).replace('T', ' ');
+
     const html = `
       <tbody>
         <tr  class="row">
@@ -16,7 +18,7 @@ $(document).ready(() => {
             ${orderData.user_name}
           </td>
           <td>
-            ${orderData.created_at}
+            ${createdAt}
           </td>
           <td>
             ${orderData.status}
@@ -35,7 +37,7 @@ $(document).ready(() => {
 
     if(all.length===0){
       const container = $('main');
-      container.append(`<p>You have no open orders. </p>`);
+      container.append(`<p style='text-align: center;'>You have no open orders. </p>`);
     }
 
     for (const order of all) {
