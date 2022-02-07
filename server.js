@@ -51,7 +51,7 @@ const signinRouter = express.Router();
 app.use("/api", apiRoutes(apiRouter, database));
 app.use("/cart", cartRoutes(cartRouter));
 app.use("/checkout", checkoutRoutes(checkoutRouter, database));
-app.use("/twilio", twilioRoutes(twilioRouter));
+app.use("/twilio", twilioRoutes(twilioRouter, database));
 app.use("/signin", signinRoutes(signinRouter));
 // Note: mount other resources here, using the same pattern above
 
