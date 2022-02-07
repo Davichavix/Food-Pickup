@@ -144,7 +144,7 @@ const getAllOpenOrders = () => {
 
 const getAllHistoryOrders = () => {
   const queryString = `
-  SELECT *,
+  SELECT orders.*,
   CONCAT(users.first_name, ' ', users.last_name) as user_name,
   CONCAT('Order No. ', orders.id) as order_number,
   CASE
