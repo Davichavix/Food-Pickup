@@ -10,7 +10,7 @@ module.exports = (router, database) => {
     .then((order) => {
       res.send(order)
       let userName = order[0]['user_name'];
-      let readyTime = Date(order[0]['created_at']);
+      let readyTime = DateToString(order[0]['created_at']);
       sendTextMessage(userName, orderID, readyTime);
     })
     .catch((e) => {
@@ -33,4 +33,12 @@ const sendTextMessage = function(Name, OrderId, readyTime) {
     console.log(e);
     res.send(e);
   });
+}
+
+const DateToString = (Date) => {
+  return Date.toLocaleString('en-US', {
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true
+  })
 }
