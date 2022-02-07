@@ -45,10 +45,13 @@ $(() => {
         url: "/api/orders",
         data: { userId, orderItems },
         type: "POST",
-      }).then((order) => {
-        localStorage.clear();
-        document.location.href = "/checkout/complete";
       })
+        .then((res) => {
+          const { orderId } = res;
+          localStorage.clear();
+          document.location.href = "/checkout/complete";
+        })
+        .catch((err) => console.log(err));
     });
   });
 
