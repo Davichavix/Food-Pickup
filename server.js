@@ -95,9 +95,9 @@ app.get("/admin/history", (req, res) => {
   res.render("admin_history");
 });
 
-app.get("/admin/id", (req, res) => {
+app.get("/admin/history/:id", (req, res) => {
   res.render("admin_id");
-});
+})
 
 
 app.get('/signin', (req, res) => {
