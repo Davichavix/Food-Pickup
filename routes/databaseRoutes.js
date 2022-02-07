@@ -201,7 +201,6 @@ const updateReadyTimeById = (order_id, time) => {
   RETURNING *;`;
 
   const values = [order_id, `${time}`];
-  console.log(values);
   return db
     .query(queryString, values)
     .then((res) => {
@@ -210,6 +209,21 @@ const updateReadyTimeById = (order_id, time) => {
     .catch((err) => console.log(err));
 };
 
+const cancelOrder = (order_id) => {
+  const queryString = `
+  UPDATE orders
+  SET completed = true
+  WHERE id = $1
+  RETURNING *;`;
+
+  const values = [order_id];
+  return db
+    .query(queryString, values)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
 const completeOrder = (order_id) => {
   const queryString = `
   UPDATE orders
@@ -267,5 +281,6 @@ module.exports = {
   addItemsToOrder,        //incomplete
   updateReadyTimeById,    //incomplete
   completeOrder,          //
-  getOrderDetailsByOrderId
+  getOrderDetailsByOrderId,
+  cancelOrder
 };

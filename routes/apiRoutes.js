@@ -152,13 +152,20 @@ module.exports = function (router, database) {
       });
   });
 
+  router.post("/orders/cancel/:id", (req, res) => {
+    const{ id } = req.body;
+    console.log("???");
+    database
+      .cancelOrder(id)
+      .then((order) => res.send(order))
+      .catch((e) => {
+        console.log(e);
+        res.send(e);
+      });
+  });
+
   router.post("/orders/:id", (req, res) => {
     const{ id, time } = req.body;
-    // const createdAt = new Date(Date.now()) / 1000;
-
-    // const orderId = req.params.id;
-    // const time = new Date(Date.now()) / 1000; //Test Code, Will need to add in time
-    // const time = req.params.time;
     console.log(time);
 
     database
