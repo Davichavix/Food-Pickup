@@ -195,12 +195,13 @@ const addItemsToOrder = (orderId, orderItems) => {
 const updateReadyTimeById = (order_id, time) => {
   const queryString = `
   UPDATE orders
-  SET ready_at = to_timestamp($2)
+  SET ready_at = $2,
+  completed = true
   WHERE id = $1
   RETURNING *;`;
 
-  const values = [order_id, time];
-
+  const values = [order_id, `${time}`];
+  console.log(values);
   return db
     .query(queryString, values)
     .then((res) => {

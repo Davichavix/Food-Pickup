@@ -2,13 +2,46 @@ $(document).ready(() => {
   loadTitle();
   loadOrders();
 
-  $('.confirm-button').click(() =>{
-    const readyIn = $('#lang').find(':selected').val();
-    if (!readyIn) {
+  $('.confirm-button').click((e) => {
+    e.preventDefault();
+
+      //get formated pickup time
+      const prepareTime = $('#lang').find(':selected').val() * 60000;
+      const current = Date.now();
+      const timestamp = current + prepareTime;
+      const time = getPickUpTime(timestamp);
+            console.log(time);
+
+      // localStorage.setItem('time', time);
+
+    if (!prepareTime) {
       alert('Please select a time. ');
     } else {
+      //get order id
+      const path =window.location.pathname;
+      const id = path.split('/')[2];
 
+      // $.get(`/api/orders/${id}`).then((res => {
+      //   console.log(res);
+      // }));
+      $.ajax({
+        url: `/api/orders/${id}`,
+        data: {id, time},
+        type: "POST",
+        success: function() {
+        }
+      }).then((res) => {
+        // localStorage.clear();
+        document.location.href = `/admin/history/${id}`;
+      })
     }
+  })
+
+
+  $('.cancel-button').click((e) => {
+    e.preventDefault();
+
+
   })
 });
 
@@ -90,8 +123,6 @@ $(document).ready(() => {
     let total = 0;
 
     for (const item of all) {
-      console.log(item);
-      console.log(item['name']);
       const container = $('.items')
       container.append(`<p style='text-indent: 50px;line-height: 1.5;'>${item['name']} x${item['qty']}</p>`);
       subtotal += item['price'] * item['qty'];
@@ -149,3 +180,9 @@ const loadTitle = () => {
   createTile(order_id);
 }
 
+const getPickUpTime = (time) => {
+  const myDate = new Date(time);
+  const formatedTime = myDate.getFullYear() + '-' +('0' + (myDate.getMonth()+1)).slice(-2)+ '-' +  ('0' + myDate.getDate()).slice(-2) + ' '+myDate.getHours()+ ':'+('0' + (myDate.getMinutes())).slice(-2)+ ':'+myDate.getSeconds();
+
+  return formatedTime;
+}
