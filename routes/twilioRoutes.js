@@ -11,7 +11,7 @@ module.exports = (router, database) => {
       res.send(order)
       let userName = order[0]['user_name'];
       let readyTime = DateToString(order[0]['created_at']);
-      sendTextMessageToUser(userName, orderID, readyTime);
+      // sendTextMessageToUser(userName, orderID, readyTime);
     })
     .catch((e) => {
       console.log(e);
@@ -24,10 +24,10 @@ module.exports = (router, database) => {
   database
     .getAllItemsByOrderId(orderID)
     .then((order) => {
-      res.send(order)
-      // let userName = 'Siyi Xie';
-      // let readyTime = DateToString(order[0]['created_at']);
-      // sendTextMessageToAdmin(userName, orderID, readyTime);
+      res.send(order);
+      let userName = 'David Chan' //return to chain another promise to get username
+      let orderItems = (getItemsFromOrder(order));
+      // sendTextMessageToAdmin(userName, orderID, orderItems);
     })
     .catch((e) => {
       console.log(e);
@@ -55,7 +55,7 @@ const sendTextMessageToUser = function(Name, OrderId, readyTime) {
 const sendTextMessageToAdmin = function(Name, OrderId, items) {
   client.messages
   .create({
-     body: `Name: ${Name}, Order#${OrderId} Items:${items.join("").split(", ")}`,
+     body: `Name: ${Name}, Order#${OrderId} Items:${items}`,
      from: '+19106315897',
      to: '+17809830537'
    })
@@ -72,4 +72,11 @@ const DateToString = (Date) => {
     minute: 'numeric',
     hour12: true
   })
+}
+
+const getItemsFromOrder = (itemsArray) => {
+  const itemString = itemsArray.map((item) => {
+    return ` ${item.name} x ${item.qty} `;
+  })
+  return itemString.join(",");
 }
