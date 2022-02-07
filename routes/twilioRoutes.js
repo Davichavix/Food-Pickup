@@ -3,14 +3,14 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require('twilio')(accountSid, authToken);
 
 module.exports = (router, database) => {
-  router.get("/:id", (req, res) => {
+  router.get("/admin/:id", (req, res) => {
     const orderID = req.params.id;
   database
     .getOrderDetailsByOrderId(orderID)
     .then((order) => {
       res.send(order)
       let userName = order[0]['user_name'];
-      let readyTime = DateToString(order[0]['created_at']);
+      let readyTime = DateToString(order[0]['ready_at']);
       // sendTextMessageToUser(userName, orderID, readyTime);
     })
     .catch((e) => {
