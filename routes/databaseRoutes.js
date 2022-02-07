@@ -120,8 +120,37 @@ const getAllOrdersOwner = () => {
 
 const getAllOpenOrders = () => {
   const queryString = `
-  SELECT orders.* FROM orders
+  SELECT *,
+  CONCAT(users.first_name, ' ', users.last_name) as user_name,
+  CONCAT('Order No. ', orders.id) as order_number,
+  CASE
+    WHEN orders.ready_at IS NULL THEN 'Unconfirmed'
+    ELSE 'Confirmed'
+  END as status
+  FROM orders
+  JOIN users ON users.id = orders.user_id
   WHERE completed = FALSE
+  ORDER BY created_at ASC;
+  `;
+  return db
+    .query(queryString)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
+const getAllHistoryOrders = () => {
+  const queryString = `
+  SELECT *,
+  CONCAT(users.first_name, ' ', users.last_name) as user_name,
+  CONCAT('Order No. ', orders.id) as order_number,
+  CASE
+    WHEN completed = TRUE THEN 'Completed'
+  END as status
+  FROM orders
+  JOIN users ON users.id = orders.user_id
+  WHERE completed = TRUE
   ORDER BY created_at ASC;
   `;
   return db
@@ -179,7 +208,7 @@ const addItemsToOrder = (orderId, orderItems) => {
   return db
     .query(format(queryString, values))
     .then((res) => {
-      return res.rows;
+      return {...res.rows, orderId};
     })
     .catch((err) => console.log(err));
 };
@@ -187,12 +216,12 @@ const addItemsToOrder = (orderId, orderItems) => {
 const updateReadyTimeById = (order_id, time) => {
   const queryString = `
   UPDATE orders
-  SET ready_at = to_timestamp($2)
+  SET ready_at = $2,
+  completed = true
   WHERE id = $1
   RETURNING *;`;
 
-  const values = [order_id, time];
-
+  const values = [order_id, `${time}`];
   return db
     .query(queryString, values)
     .then((res) => {
@@ -201,6 +230,21 @@ const updateReadyTimeById = (order_id, time) => {
     .catch((err) => console.log(err));
 };
 
+const cancelOrder = (order_id) => {
+  const queryString = `
+  UPDATE orders
+  SET completed = true
+  WHERE id = $1
+  RETURNING *;`;
+
+  const values = [order_id];
+  return db
+    .query(queryString, values)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
 const completeOrder = (order_id) => {
   const queryString = `
   UPDATE orders
@@ -249,7 +293,8 @@ module.exports = {
   getUserById,            //
   getAllOrdersByUserId,   //
   getAllOrdersOwner,      //
-  getAllOpenOrders,       //
+  getAllOpenOrders,
+  getAllHistoryOrders,        //
   getAllItemsByOrderId,   //
   getAllItems,            //
   getItemById,            //
@@ -258,5 +303,6 @@ module.exports = {
   addItemsToOrder,        //incomplete
   updateReadyTimeById,    //incomplete
   completeOrder,          //
-  getOrderDetailsByOrderId
+  getOrderDetailsByOrderId,
+  cancelOrder
 };

@@ -122,6 +122,16 @@ module.exports = function (router, database) {
       });
   });
 
+  router.get("/admin/history", (req, res) => {
+    database
+      .getAllHistoryOrders()
+      .then((orders) => res.send(orders))
+      .catch((e) => {
+        console.log(e);
+        res.send(e);
+      });
+  });
+
   router.post("/users", (req, res) => {
     const user = { ...req.body };
 
@@ -152,12 +162,24 @@ module.exports = function (router, database) {
       });
   });
 
-  router.put("/orders/:id", (req, res) => {
-    const orderId = req.params.id;
-    const time = new Date(Date.now()) / 1000; //Test Code, Will need to add in time
+  router.post("/orders/cancel/:id", (req, res) => {
+    const{ id } = req.body;
+    console.log("???");
+    database
+      .cancelOrder(id)
+      .then((order) => res.send(order))
+      .catch((e) => {
+        console.log(e);
+        res.send(e);
+      });
+  });
+
+  router.post("/orders/:id", (req, res) => {
+    const{ id, time } = req.body;
+    console.log(time);
 
     database
-      .updateReadyTimeById(orderId, time)
+      .updateReadyTimeById(id, time)
       .then((order) => res.send(order))
       .catch((e) => {
         console.log(e);
