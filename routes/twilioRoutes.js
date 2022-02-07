@@ -52,10 +52,10 @@ const sendTextMessageToUser = function(Name, OrderId, readyTime) {
   });
 }
 
-const sendTextMessageToAdmin = function(Name, OrderId, readyTime) {
+const sendTextMessageToAdmin = function(Name, OrderId, items) {
   client.messages
   .create({
-     body: `Hi ${Name}, Your Order #${OrderId} is confirmed and will be ready at ${readyTime}`,
+     body: `Name: ${Name}, Order#${OrderId} Items:${items.join("").split(", ")}`,
      from: '+19106315897',
      to: '+17809830537'
    })
