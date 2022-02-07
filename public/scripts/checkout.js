@@ -50,6 +50,7 @@ $(() => {
           const { orderId } = res;
           localStorage.clear();
           document.location.href = "/checkout/complete";
+          return $.get(`/twilio/users/${orderId}`)
         })
         .catch((err) => console.log(err));
     });

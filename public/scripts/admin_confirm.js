@@ -25,6 +25,7 @@ $(document).ready(() => {
         }
       }).then((res) => {
         document.location.href = `/admin/history/${id}`;
+        return $.get(`/twilio/admin/${id}`)
       })
     }
   })
