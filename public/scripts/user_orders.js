@@ -1,5 +1,8 @@
 $(document).ready(() => {
-
+  window.history.pushState(null, "", window.location.href);
+  window.onpopstate = () => {
+    window.history.pushState(null, "", window.location.href);
+  }
   loadOrders();
 
 });
