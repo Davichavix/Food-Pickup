@@ -179,7 +179,7 @@ const addItemsToOrder = (orderId, orderItems) => {
   return db
     .query(format(queryString, values))
     .then((res) => {
-      return res.rows;
+      return {...res.rows, orderId};
     })
     .catch((err) => console.log(err));
 };
