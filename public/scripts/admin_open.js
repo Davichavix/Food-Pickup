@@ -35,7 +35,7 @@ $(document).ready(() => {
 
     if(all.length===0){
       const container = $('main');
-      container.append(`<p>You have no orders. View our <a href='/'>Menu</a> & get a bubble tea!</p>`);
+      container.append(`<p>You have no open orders. </p>`);
     }
 
     for (const order of all) {
