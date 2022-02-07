@@ -10,7 +10,6 @@ $(document).ready(() => {
       const current = Date.now();
       const timestamp = current + prepareTime;
       const time = getPickUpTime(timestamp);
-            console.log(time);
 
     if (!prepareTime) {
       alert('Please select a time. ');
