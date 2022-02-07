@@ -140,6 +140,27 @@ const getAllOpenOrders = () => {
     .catch((err) => console.log(err));
 };
 
+const getAllHistoryOrders = () => {
+  const queryString = `
+  SELECT *,
+  CONCAT(users.first_name, ' ', users.last_name) as user_name,
+  CONCAT('Order No. ', orders.id) as order_number,
+  CASE
+    WHEN completed = TRUE THEN 'Completed'
+  END as status
+  FROM orders
+  JOIN users ON users.id = orders.user_id
+  WHERE completed = TRUE
+  ORDER BY created_at ASC;
+  `;
+  return db
+    .query(queryString)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
 const getAllItemsByOrderId = (orderId) => {
   const queryString = `
   SELECT items.*, qty FROM items
@@ -272,7 +293,8 @@ module.exports = {
   getUserById,            //
   getAllOrdersByUserId,   //
   getAllOrdersOwner,      //
-  getAllOpenOrders,       //
+  getAllOpenOrders,
+  getAllHistoryOrders,        //
   getAllItemsByOrderId,   //
   getAllItems,            //
   getItemById,            //

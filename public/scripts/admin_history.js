@@ -22,7 +22,7 @@ $(document).ready(() => {
             ${orderData.status}
           </td>
           <td>
-            <a href="/admin/${orderData.id}/confirm"><button type="button" class="btn-trans details-button ">Details</button></a>
+            <a href="/admin/history/${orderData.id}"><button type="button" class="btn-trans details-button ">Details</button></a>
           </td>
         </tr>
       </tbody>
@@ -35,7 +35,7 @@ $(document).ready(() => {
 
     if(all.length===0){
       const container = $('main');
-      container.append(`<p>You have no open orders. </p>`);
+      container.append(`<p>You have no history orders. </p>`);
     }
 
     for (const order of all) {
@@ -47,10 +47,7 @@ $(document).ready(() => {
   }
 
   const loadOrders = () => {
-    const path =window.location.pathname;
-    const user_id = path.split('/')[2];
-
-    $.get(`/api/admin/open`).then((res) => {
+    $.get(`/api/admin/history`).then((res) => {
       renderOrders({res});
     });
   }

@@ -122,6 +122,16 @@ module.exports = function (router, database) {
       });
   });
 
+  router.get("/admin/history", (req, res) => {
+    database
+      .getAllHistoryOrders()
+      .then((orders) => res.send(orders))
+      .catch((e) => {
+        console.log(e);
+        res.send(e);
+      });
+  });
+
   router.post("/users", (req, res) => {
     const user = { ...req.body };
 
