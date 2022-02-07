@@ -148,6 +148,7 @@ const getAllHistoryOrders = () => {
   CONCAT(users.first_name, ' ', users.last_name) as user_name,
   CONCAT('Order No. ', orders.id) as order_number,
   CASE
+    WHEN orders.ready_at IS NULL AND completed = TRUE THEN 'Cancelled'
     WHEN completed = TRUE THEN 'Completed'
   END as status
   FROM orders
