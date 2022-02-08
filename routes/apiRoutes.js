@@ -147,7 +147,7 @@ module.exports = function (router, database) {
   //will need to complete this as we approach cart screen
   router.post("/orders", (req, res) => {
     const { userId, orderItems } = req.body;
-    const createdAt = new Date(Date.now()) / 1000;
+    const createdAt = new Date();
 
     database
       .addOrder({ userId, createdAt })

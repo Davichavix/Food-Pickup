@@ -184,7 +184,7 @@ const addOrder = (order) => {
   INSERT INTO orders (
   user_id, created_at
   ) VALUES (
-    $1, to_timestamp($2)
+    $1, $2
   ) RETURNING *`;
 
   const values = [order.userId, order.createdAt];
