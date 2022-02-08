@@ -16,27 +16,29 @@ The following steps are only for _one_ of the group members to perform.
 ```
 ├── public
 │   ├── index.html
-│   ├── javascript
-│   │   ├── components 
-│   │   │   ├── header.js
-│   │   │   ├── login_form.js
-│   │   │   ├── new_property_form.js
-│   │   │   ├── property_listing.js
-│   │   │   ├── property_listings.js
-│   │   │   ├── search_form.js
-│   │   │   └── signup_form.js
-│   │   ├── index.js
-│   │   ├── libraries
+│   ├── scripts
+│   │   ├── admin_confirm.js
+│   │   ├── admin_history.js
+│   │   ├── admin_id.js
+│   │   ├── admin_open.js
+│   │   ├── app.js
+│   │   ├── cart.js
+│   │   ├── checkout-complete.js
+│   │   ├── checkout.js
+│   │   ├── clientIndex.js
+│   │   ├── helpers.js
 │   │   ├── network.js
-│   │   └── views_manager.js
+│   │   ├── user_orders_id.js
+│   │   └── user_orders.js
 │   └── styles
 ├── sass
-└── server
-  ├── apiRoutes.js
-  ├── database.js
-  ├── json
-  ├── server.js
-  └── userRoutes.js
+├── routes
+│   ├── apiRoutes.js
+│   ├── cartRoutes
+│   ├──orderRoutes.js
+│   ├──siginRoutes.js
+│   ├── twilioRoutes.js
+└── views
 ```
 
 
