@@ -9,6 +9,17 @@ $(document).ready(() => {
   }
 
   const creatOrder = (orderData) => {
+    const createdAt = (orderData.created_at.slice(0, 19)).replace('T', ' ');
+    let placedAt = '';
+    console.log(orderData.ready_at);
+
+    if (orderData.ready_at === null) {
+      placedAt = 'Unconfirmed';
+    } else {
+      text =
+      placedAt = (orderData.ready_at.slice(0, 19)).replace('T', ' ');
+    }
+
     const html = `
         <table>
           <tbody>
@@ -30,11 +41,11 @@ $(document).ready(() => {
             </tr>
             <tr>
               <td>Placed at:</td>
-              <td>${orderData.created_at}</td>
+              <td>${createdAt}</td>
             </tr>
             <tr>
               <td>Pickup at:</td>
-              <td>${orderData.ready_at}</td>
+              <td>${placedAt}</td>
             </tr>
 
           </tbody>
@@ -64,7 +75,7 @@ $(document).ready(() => {
       </table>
 
       </div>
-        <a href='javascript:history.back()'><button type="button" class="btn back-button">Back</button></a>
+        <a href='/admin/history'><button type="button" class="btn back-button">Back</button></a>
       </div>
     `
 
@@ -93,7 +104,7 @@ $(document).ready(() => {
     }
 
     tax = Math.round(subtotal * 0.05 * 100) / 100;
-    total = subtotal + tax;
+    total = Math.round((subtotal + tax) * 100) / 100;
 
     $('#sub').text(`$${subtotal}`);
     $('#tax').text(`$${tax}`);

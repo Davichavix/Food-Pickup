@@ -60,7 +60,7 @@ const addUser = (user) => {
 
 const getAllOrdersByUserId = (user_id, limit = 10) => {
   const queryString = `
-  SELECT * , CONCAT(users.first_name, ' ', users.last_name) as user_name,
+  SELECT orders.* , CONCAT(users.first_name, ' ', users.last_name) as user_name,
   CONCAT('Order No. ', orders.id) as order_number,
   CASE
     WHEN orders.ready_at IS NULL THEN 'Unconfirmed'
@@ -68,7 +68,8 @@ const getAllOrdersByUserId = (user_id, limit = 10) => {
   END as status
   FROM orders
   JOIN users ON users.id = orders.user_id
-  WHERE user_id = $1;
+  WHERE user_id = $1
+  ORDER BY orders.id ASC;
   `;
 
   return db
@@ -84,6 +85,7 @@ const getOrderDetailsByOrderId = (order_id) => {
   SELECT CONCAT(users.first_name, ' ', users.last_name) as user_name,
   CONCAT('Order No. ', orders.id) as order_number,
   CASE
+    WHEN orders.ready_at IS NULL AND completed = TRUE THEN 'Cancelled'
     WHEN orders.ready_at IS NULL THEN 'Unconfirmed'
     ELSE 'Confirmed'
   END as status,
@@ -120,7 +122,7 @@ const getAllOrdersOwner = () => {
 
 const getAllOpenOrders = () => {
   const queryString = `
-  SELECT *,
+  SELECT orders.*,
   CONCAT(users.first_name, ' ', users.last_name) as user_name,
   CONCAT('Order No. ', orders.id) as order_number,
   CASE
@@ -142,10 +144,11 @@ const getAllOpenOrders = () => {
 
 const getAllHistoryOrders = () => {
   const queryString = `
-  SELECT *,
+  SELECT orders.*,
   CONCAT(users.first_name, ' ', users.last_name) as user_name,
   CONCAT('Order No. ', orders.id) as order_number,
   CASE
+    WHEN orders.ready_at IS NULL AND completed = TRUE THEN 'Cancelled'
     WHEN completed = TRUE THEN 'Completed'
   END as status
   FROM orders
@@ -301,7 +304,7 @@ module.exports = {
   addUser,                //
   addOrder,               //incomplete
   addItemsToOrder,        //incomplete
-  updateReadyTimeById,    //incomplete
+  updateReadyTimeById,    //
   completeOrder,          //
   getOrderDetailsByOrderId,
   cancelOrder

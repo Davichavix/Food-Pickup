@@ -6,6 +6,7 @@ $(document).ready(() => {
 
   //helper funtions
   const creatOrder = (orderData) => {
+    const createdAt = (orderData.created_at.slice(0, 19)).replace('T', ' ');
     const html = `
       <tbody>
         <tr  class="row">
@@ -16,7 +17,7 @@ $(document).ready(() => {
             ${orderData.user_name}
           </td>
           <td>
-            ${orderData.created_at}
+            ${createdAt}
           </td>
           <td>
             ${orderData.status}
