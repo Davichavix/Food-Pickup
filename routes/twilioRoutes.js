@@ -11,7 +11,7 @@ module.exports = (router, database) => {
       res.send(order)
       let userName = order[0]['user_name'];
       let readyTime = DateToString(order[0]['ready_at']);
-      // sendTextMessageToUser(userName, orderID, readyTime);
+      sendTextMessageToUser(userName, orderID, readyTime);
     })
     .catch((e) => {
       console.log(e);
@@ -27,7 +27,7 @@ module.exports = (router, database) => {
       res.send(order);
       let userName = order[0].user_name;
       let orderItems = (getItemsFromOrder(order));
-      // sendTextMessageToAdmin(userName, orderID, orderItems);
+      sendTextMessageToAdmin(userName, orderID, orderItems);
     })
     .catch((e) => {
       console.log(e);
