@@ -96,13 +96,11 @@ $(document).ready(() => {
     let total = 0;
 
     for (const item of all) {
-      console.log(item);
-      console.log(item['name']);
       const container = $('.items')
       container.append(`<p style='text-indent: 50px;line-height: 1.5;'>${item['name']} x${item['qty']}</p>`);
       subtotal += item['price'] * item['qty'];
     }
-
+    subtotal = Math.round(subtotal * 100) / 100;
     tax = Math.round(subtotal * 0.05 * 100) / 100;
     total = Math.round((subtotal + tax) * 100) / 100;
 
