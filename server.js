@@ -12,7 +12,7 @@ const database = require("./routes/databaseRoutes");
 const cartRoutes = require("./routes/cartRoutes");
 const checkoutRoutes = require("./routes/checkoutRoutes");
 const twilioRoutes = require("./routes/twilioRoutes");
-const signinRoutes = require("./routes/signinRoutes");
+const userRoutes = require("./routes/userRoutes");
 
 const cookieSession = require("cookie-session");
 app.use(
@@ -53,14 +53,14 @@ const apiRouter = express.Router();
 const cartRouter = express.Router();
 const checkoutRouter = express.Router();
 const twilioRouter = express.Router();
-const signinRouter = express.Router();
+const userRouter = express.Router();
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api", apiRoutes(apiRouter, database));
 app.use("/cart", cartRoutes(cartRouter));
 app.use("/checkout", checkoutRoutes(checkoutRouter, database));
 // app.use("/twilio", twilioRoutes(twilioRouter));
-app.use("/signin", signinRoutes(signinRouter, database));
+app.use("/user", userRoutes(userRouter, database));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
