@@ -11,6 +11,34 @@ The following steps are only for _one_ of the group members to perform.
 4. Add your team members as collaborators to the project so that they can push to this repo
 5. Let your team members know the repo URL so that they use the same repo (they should _not_ create a copy/fork of this repo since that will add additional workflow complexity to the project)
 
+## Project Structure
+
+```
+├── public
+│   ├── index.html
+│   ├── javascript
+│   │   ├── components 
+│   │   │   ├── header.js
+│   │   │   ├── login_form.js
+│   │   │   ├── new_property_form.js
+│   │   │   ├── property_listing.js
+│   │   │   ├── property_listings.js
+│   │   │   ├── search_form.js
+│   │   │   └── signup_form.js
+│   │   ├── index.js
+│   │   ├── libraries
+│   │   ├── network.js
+│   │   └── views_manager.js
+│   └── styles
+├── sass
+└── server
+  ├── apiRoutes.js
+  ├── database.js
+  ├── json
+  ├── server.js
+  └── userRoutes.js
+```
+
 
 ## Getting Started
 
