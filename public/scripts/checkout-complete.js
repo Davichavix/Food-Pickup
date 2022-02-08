@@ -1,11 +1,7 @@
 $(() => {
-  const userId = 1; //Add cookie session
-
-
-
-  setTimeout(() => {
-    window.location.href = `/orders/${userId}`;
-  }, 2000);
-
-
+  $.get("/api/users/me").then((user) => {
+    setTimeout(() => {
+      window.location.href = `/orders/${user.id}`;
+    }, 2000);
+  });
 });
