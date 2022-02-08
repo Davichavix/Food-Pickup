@@ -1,15 +1,17 @@
 LHL Node Skeleton
 =========
 
-## Project Setup
+## Project Scope
 
-The following steps are only for _one_ of the group members to perform.
+Food Pickup is a restaurant pickup app that allows user to browse an online menu and add items to a cart for later pickup. Utilizing the twilio API the restaurant is then sent an SMS with the user's order. the admin for the restaurant is then able to select a time the order will be ready. The user is then notified via SMS their order # and pickup time.
 
-1. Create your own copy of this repo using the `Use This Template` button, ideally using the name of your project. The repo should be marked Public
-2. Verify that the skeleton code now shows up in your repo on GitHub, you should be automatically redirected
-3. Clone your copy of the repo to your dev machine
-4. Add your team members as collaborators to the project so that they can push to this repo
-5. Let your team members know the repo URL so that they use the same repo (they should _not_ create a copy/fork of this repo since that will add additional workflow complexity to the project)
+## App Features
+
+### Cart
+- Users are able to select multiple items and item quantity from the menu and information is sent via local        storage to the cart page.
+- price totals are automatically calculated per line item as well as overall total
+- Users can remove entire items or modify the quantity of each item
+- Total prices are recalculated automatically on user inputs
 
 ## Project Structure
 
