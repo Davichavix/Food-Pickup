@@ -1,25 +1,53 @@
-/*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
+const bcrypt = require("bcrypt");
 
-const express = require('express');
-const router  = express.Router();
+module.exports = (router, database) => {
+    /**
+   * Check if a user exists in db
+   * @param {String} email
+   * @param {String} password bcrypt string
+   * @returns user object or null
+   */
 
-module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then(data => {
-        const users = data.rows;
-        res.json({ users });
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+    const login = function (email, password) {
+      return database.getUserByEmail(email).then((user) => {
+        if (bcrypt.compareSync(password, user.password)) {
+          return user;
+        }
+        return null;
       });
-  });
-  return router;
+    };
+
+    router.get("/signin", (req, res) => {
+      res.render("signin");
+    });
+
+
+    router.post("/", (req, res) => {
+      const { email, password } = req.body;
+      login(email, password)
+        .then((user) => {
+          if (!user) {
+            res.send({ error: "Not authorized!" });
+            return;
+          }
+          req.session.userId = user.id;
+          res.send({
+            user: {
+              firstName: user.first_name,
+              lastName: user.last_name,
+              phone: user.phone_number,
+              email: user.email,
+            },
+          });
+        })
+        .catch((err) => console.log(err));
+    });
+
+    router.post("/logout", (req, res) => {
+      req.session.userId = null;
+      res.send({});
+    });
+
+    return router;
+
 };
