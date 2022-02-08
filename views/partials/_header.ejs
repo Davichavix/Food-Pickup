@@ -4,18 +4,18 @@
     <!-- If no user's logged in  -->
     <div class="nav-no-user">
     <!-- remove display after adding logic -->
-    <a href='/signin'><button type="button" class="nav-button">Sign In</button></a>
+    <a href='/user/signin'><button type="button" class="nav-button">Sign In</button></a>
     <a href='/'><button type="button" class="nav-button"> Menu</button></a>
     </div>
 
 
     <!-- If user's logged in  -->
-    <div class="nav-user" style ='display: none;'>
+    <div class="nav-user">
     <!-- remove display after adding logic -->
       <form class="nav-logout">
       <!--Add to form: action="/logout" method="POST" -->
-        <lable class="nav-gretting">Hello, user.name! </lable>
-        <button type="submit" class="nav-button">Log out</button>
+        <label class="nav-greeting " id=""></label>
+        <button type="button" class="nav-button logout">Log out</button>
       </form>
 
       <div>
@@ -28,5 +28,5 @@
 
   <a href='/' class="header-logo"><img src="/images/logo.png" class="logo"></a>
 
-
+  <script src="scripts/header.js"></script>
 </header>
