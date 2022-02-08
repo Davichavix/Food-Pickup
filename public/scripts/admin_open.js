@@ -1,16 +1,13 @@
 $(document).ready(() => {
-  window.history.pushState(null, "", window.location.href);
-  window.onpopstate = () => {
-    window.history.pushState(null, "", window.location.href);
-  }
+
   loadOrders();
 
 });
 
   //helper funtions
   const creatOrder = (orderData) => {
-
     const createdAt = (orderData.created_at.slice(0, 19)).replace('T', ' ');
+
     const html = `
       <tbody>
         <tr  class="row">
@@ -27,7 +24,7 @@ $(document).ready(() => {
             ${orderData.status}
           </td>
           <td>
-            <a href="/orders/${orderData.user_id}/${orderData.id}"><button type="button" class="btn-trans details-button ">Details</button></a>
+            <a href="/admin/${orderData.id}/confirm"><button type="button" class="btn-trans details-button ">Details</button></a>
           </td>
         </tr>
       </tbody>
@@ -36,14 +33,14 @@ $(document).ready(() => {
   }
 
   const renderOrders = (orders) => {
+    const all = orders['res'];
 
-    if(orders['orders'].length===0){
-      console.log("here");
+    if(all.length===0){
       const container = $('main');
-      container.append(`<p>You have no orders. View our <a href='/'>Menu</a> & get a bubble tea!</p>`);
+      container.append(`<p style='text-align: center;'>You have no open orders. </p>`);
     }
 
-    for (const order of orders['orders']) {
+    for (const order of all) {
       const newOrder = creatOrder(order);
       const container = $('.orders-content');
       container.prepend(newOrder);
@@ -55,7 +52,7 @@ $(document).ready(() => {
     const path =window.location.pathname;
     const user_id = path.split('/')[2];
 
-    $.get(`/api/orders/user/${user_id}`).then((res) => {
-      renderOrders(res);
+    $.get(`/api/admin/open`).then((res) => {
+      renderOrders({res});
     });
   }

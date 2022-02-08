@@ -11,8 +11,8 @@ $(document).ready(() => {
   const creatOrder = (orderData) => {
     const utc = new Date(orderData.created_at);
     const createdAt = getPickUpTime(utc);
-    const phone = formatPhone(orderData.phone_number.toString());
     let placedAt = '';
+    const phone = formatPhone(orderData.phone_number.toString());
 
     if (orderData.ready_at === null) {
       placedAt = 'Unconfirmed';
@@ -76,7 +76,7 @@ $(document).ready(() => {
       </table>
 
       </div>
-        <a href='javascript:history.back()'><button type="button" class="btn back-button">Back</button></a>
+        <a href='/admin/history'><button type="button" class="btn back-button">Back</button></a>
       </div>
     `
 
@@ -84,6 +84,7 @@ $(document).ready(() => {
   }
 
   const renderOrder = (order) => {
+
     const newOrder = creatOrder(order['order'][0]);
     const container = $('.checkout-table');
     container.append(newOrder);

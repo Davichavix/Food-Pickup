@@ -16,7 +16,7 @@
   line-height: 2;
 }
 
-.checkout-table {
+.order-table {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -74,7 +74,7 @@
 #lang {
   width: 40%;
   text-align: center;
-  margin-left: 80px;
+  margin-left: 65px;
 }
 
 .confirm-button {
@@ -87,4 +87,10 @@
   width: 60%;
   height: 60px;
   margin-top: 50px;
+}
+
+.total-table {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
 }

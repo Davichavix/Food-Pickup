@@ -45,10 +45,16 @@ $(() => {
           };
         });
 
-        $.ajax({
-          url: "/api/orders",
-          data: { userId, orderItems },
-          type: "POST",
+      $.ajax({
+        url: "/api/orders",
+        data: { userId, orderItems },
+        type: "POST",
+      })
+        .then((res) => {
+          const { orderId } = res;
+          localStorage.clear();
+          document.location.href = "/checkout/complete";
+          return $.get(`/twilio/users/${orderId}`)
         })
           .then((res) => {
             const { orderId } = res;

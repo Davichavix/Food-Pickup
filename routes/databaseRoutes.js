@@ -60,7 +60,7 @@ const addUser = (user) => {
 
 const getAllOrdersByUserId = (user_id, limit = 10) => {
   const queryString = `
-  SELECT * , CONCAT(users.first_name, ' ', users.last_name) as user_name,
+  SELECT orders.* , CONCAT(users.first_name, ' ', users.last_name) as user_name,
   CONCAT('Order No. ', orders.id) as order_number,
   CASE
     WHEN orders.ready_at IS NULL THEN 'Unconfirmed'
@@ -68,7 +68,8 @@ const getAllOrdersByUserId = (user_id, limit = 10) => {
   END as status
   FROM orders
   JOIN users ON users.id = orders.user_id
-  WHERE user_id = $1;
+  WHERE user_id = $1
+  ORDER BY orders.id ASC;
   `;
 
   return db
@@ -84,6 +85,7 @@ const getOrderDetailsByOrderId = (order_id) => {
   SELECT CONCAT(users.first_name, ' ', users.last_name) as user_name,
   CONCAT('Order No. ', orders.id) as order_number,
   CASE
+    WHEN orders.ready_at IS NULL AND completed = TRUE THEN 'Cancelled'
     WHEN orders.ready_at IS NULL THEN 'Unconfirmed'
     ELSE 'Confirmed'
   END as status,
@@ -120,8 +122,38 @@ const getAllOrdersOwner = () => {
 
 const getAllOpenOrders = () => {
   const queryString = `
-  SELECT orders.* FROM orders
+  SELECT orders.*,
+  CONCAT(users.first_name, ' ', users.last_name) as user_name,
+  CONCAT('Order No. ', orders.id) as order_number,
+  CASE
+    WHEN orders.ready_at IS NULL THEN 'Unconfirmed'
+    ELSE 'Confirmed'
+  END as status
+  FROM orders
+  JOIN users ON users.id = orders.user_id
   WHERE completed = FALSE
+  ORDER BY created_at ASC;
+  `;
+  return db
+    .query(queryString)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
+const getAllHistoryOrders = () => {
+  const queryString = `
+  SELECT orders.*,
+  CONCAT(users.first_name, ' ', users.last_name) as user_name,
+  CONCAT('Order No. ', orders.id) as order_number,
+  CASE
+    WHEN orders.ready_at IS NULL AND completed = TRUE THEN 'Cancelled'
+    WHEN completed = TRUE THEN 'Completed'
+  END as status
+  FROM orders
+  JOIN users ON users.id = orders.user_id
+  WHERE completed = TRUE
   ORDER BY created_at ASC;
   `;
   return db
@@ -152,7 +184,7 @@ const addOrder = (order) => {
   INSERT INTO orders (
   user_id, created_at
   ) VALUES (
-    $1, to_timestamp($2)
+    $1, $2
   ) RETURNING *`;
 
   const values = [order.userId, order.createdAt];
@@ -187,12 +219,12 @@ const addItemsToOrder = (orderId, orderItems) => {
 const updateReadyTimeById = (order_id, time) => {
   const queryString = `
   UPDATE orders
-  SET ready_at = to_timestamp($2)
+  SET ready_at = $2,
+  completed = true
   WHERE id = $1
   RETURNING *;`;
 
-  const values = [order_id, time];
-
+  const values = [order_id, `${time}`];
   return db
     .query(queryString, values)
     .then((res) => {
@@ -201,6 +233,21 @@ const updateReadyTimeById = (order_id, time) => {
     .catch((err) => console.log(err));
 };
 
+const cancelOrder = (order_id) => {
+  const queryString = `
+  UPDATE orders
+  SET completed = true
+  WHERE id = $1
+  RETURNING *;`;
+
+  const values = [order_id];
+  return db
+    .query(queryString, values)
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
 const completeOrder = (order_id) => {
   const queryString = `
   UPDATE orders
@@ -244,19 +291,39 @@ const getItemById = (id) => {
     .catch((err) => console.log(err));
 };
 
+const getAllItemsByOrderIdandName = (orderId) => {
+  const queryString = `
+  SELECT items.*, qty, CONCAT(users.first_name, ' ', users.last_name) as user_name FROM items
+  JOIN order_items ON order_items.item_id = items.id
+  JOIN orders ON orders.id = order_items.order_id
+  JOIN users ON users.id = orders.user_id
+  WHERE order_id = $1;
+  `;
+
+  return db
+    .query(queryString, [orderId])
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
 module.exports = {
   getUserByEmail,         //
   getUserById,            //
   getAllOrdersByUserId,   //
   getAllOrdersOwner,      //
-  getAllOpenOrders,       //
+  getAllOpenOrders,
+  getAllHistoryOrders,        //
   getAllItemsByOrderId,   //
   getAllItems,            //
   getItemById,            //
   addUser,                //
   addOrder,               //incomplete
   addItemsToOrder,        //incomplete
-  updateReadyTimeById,    //incomplete
+  updateReadyTimeById,    //
   completeOrder,          //
-  getOrderDetailsByOrderId
+  getOrderDetailsByOrderId,
+  cancelOrder,
+  getAllItemsByOrderIdandName
 };

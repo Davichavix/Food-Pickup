@@ -1,6 +1,50 @@
 $(document).ready(() => {
   loadTitle();
   loadOrders();
+
+  $('.confirm-button').click((e) => {
+    e.preventDefault();
+
+      //get formated pickup time
+      const prepareTime = $('#lang').find(':selected').val() * 60000;
+      const current = Date.now();
+      const timestamp = current + prepareTime;
+      const time = getPickUpTime(timestamp);
+
+    if (!prepareTime) {
+      alert('Please select a time. ');
+    } else {
+      const path =window.location.pathname;
+      const id = path.split('/')[2];
+
+      $.ajax({
+        url: `/api/orders/${id}`,
+        data: {id, time},
+        type: "POST",
+        success: function() {
+        }
+      }).then((res) => {
+        document.location.href = `/admin/history/${id}`;
+        return $.get(`/twilio/admin/${id}`)
+      })
+    }
+  })
+
+
+  $('.cancel-button').click((e) => {
+    e.preventDefault();
+
+    const path =window.location.pathname;
+    const id = path.split('/')[2];
+
+    $.ajax({
+      url: `/api/orders/cancel/${id}`,
+      data: {id},
+      type: "POST",
+    }).then((res) => {
+      document.location.href = `/admin/history/${id}`;
+    })
+  })
 });
 
   //helper funtions
@@ -11,8 +55,8 @@ $(document).ready(() => {
   const creatOrder = (orderData) => {
     const utc = new Date(orderData.created_at);
     const createdAt = getPickUpTime(utc);
-    const phone = formatPhone(orderData.phone_number.toString());
     let placedAt = '';
+    const phone = formatPhone(orderData.phone_number.toString());
 
     if (orderData.ready_at === null) {
       placedAt = 'Unconfirmed';
@@ -20,7 +64,6 @@ $(document).ready(() => {
       text =
       placedAt = (orderData.ready_at.slice(0, 19)).replace('T', ' ');
     }
-
     const html = `
         <table>
           <tbody>
@@ -74,18 +117,15 @@ $(document).ready(() => {
             </tr>
         </div>
       </table>
-
-      </div>
-        <a href='javascript:history.back()'><button type="button" class="btn back-button">Back</button></a>
-      </div>
     `
 
     return html;
   }
 
   const renderOrder = (order) => {
+
     const newOrder = creatOrder(order['order'][0]);
-    const container = $('.checkout-table');
+    const container = $('.order-table');
     container.append(newOrder);
   }
 
@@ -132,7 +172,7 @@ $(document).ready(() => {
 
   const loadOrders = () => {
     const path =window.location.pathname;
-    const order_id = path.split('/')[3];
+    const order_id = path.split('/')[2];
 
     $.get(`/api/orders/details/${order_id}`).then((res) => {
 
@@ -148,7 +188,7 @@ $(document).ready(() => {
 
 const loadTitle = () => {
   const path =window.location.pathname;
-  const order_id = path.split('/')[3];
+  const order_id = path.split('/')[2];
 
   createTile(order_id);
 }
