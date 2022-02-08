@@ -4,6 +4,9 @@ footer {
   width: 100%;
   background-color: rgb(236, 218, 194);
   height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer {
@@ -36,13 +39,15 @@ h3 {
   text-align: center;
 }
 
+p {
+  line-height: 1.2;
+  font-size: 18px;
+  font-weight: 400;
+}
+
 .address-title {
   font-weight: 600;
   margin: 0 0 -15px 0;
-}
-
-p {
-  line-height: 1.2;
 }
 
 #map {

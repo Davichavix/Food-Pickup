@@ -11,10 +11,11 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/map.js"></script>
 
   <!-- CSS -->
   <link rel="stylesheet" href="/styles/signin.css" type="text/css" />
-
+  <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,6 +47,10 @@
     </div>
 
   </main>
+  <%- include('partials/_footer') %>
+
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkDWIRmETEukyPlVAz__0GAY_bDZ8DuU8&callback=initMap&libraries=&v=weekly" async></script>
 
 </body>
 
