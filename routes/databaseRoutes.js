@@ -291,6 +291,23 @@ const getItemById = (id) => {
     .catch((err) => console.log(err));
 };
 
+const getAllItemsByOrderIdandName = (orderId) => {
+  const queryString = `
+  SELECT items.*, qty, CONCAT(users.first_name, ' ', users.last_name) as user_name FROM items
+  JOIN order_items ON order_items.item_id = items.id
+  JOIN orders ON orders.id = order_items.order_id
+  JOIN users ON users.id = orders.user_id
+  WHERE order_id = $1;
+  `;
+
+  return db
+    .query(queryString, [orderId])
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => console.log(err));
+};
+
 module.exports = {
   getUserByEmail,         //
   getUserById,            //
@@ -307,5 +324,6 @@ module.exports = {
   updateReadyTimeById,    //
   completeOrder,          //
   getOrderDetailsByOrderId,
-  cancelOrder
+  cancelOrder,
+  getAllItemsByOrderIdandName
 };
