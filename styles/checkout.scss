@@ -43,15 +43,15 @@
 
 .checkout-btn-group {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   width: 60%;
   margin-top: 50px;
 }
 
 .checkout-button {
   height: 60px;
-  width: 200px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .checkout-divider {

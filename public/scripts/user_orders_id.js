@@ -9,9 +9,10 @@ $(document).ready(() => {
   }
 
   const creatOrder = (orderData) => {
-    const createdAt = (orderData.created_at.slice(0, 19)).replace('T', ' ');
+    const utc = new Date(orderData.created_at);
+    const createdAt = getPickUpTime(utc);
+    const phone = formatPhone(orderData.phone_number.toString());
     let placedAt = '';
-    console.log(orderData.ready_at);
 
     if (orderData.ready_at === null) {
       placedAt = 'Unconfirmed';
@@ -33,7 +34,7 @@ $(document).ready(() => {
             </tr>
             <tr>
                 <td>Phone Number:</td>
-                <td>${orderData.phone_number}</td>
+                <td>${phone}</td>
             </tr>
             <tr>
               <td>Email:</td>
@@ -53,7 +54,7 @@ $(document).ready(() => {
 
         <p>Order items:</p>
 
-        <section class='items'></section>
+        <section class='items' style='margin-top: -20px;'></section>
 
         <hr class="checkout-divider">
 
@@ -83,7 +84,6 @@ $(document).ready(() => {
   }
 
   const renderOrder = (order) => {
-
     const newOrder = creatOrder(order['order'][0]);
     const container = $('.checkout-table');
     container.append(newOrder);
@@ -96,13 +96,11 @@ $(document).ready(() => {
     let total = 0;
 
     for (const item of all) {
-      console.log(item);
-      console.log(item['name']);
       const container = $('.items')
-      container.append(`<p style='text-indent: 50px;line-height: 1.5;'>${item['name']} x${item['qty']}</p>`);
+      container.append(`<p style='text-indent: 50px;line-height: 0.8; font-weight: 600;'>${item['name']} x${item['qty']}</p>`);
       subtotal += item['price'] * item['qty'];
     }
-
+    subtotal = Math.round(subtotal * 100) / 100;
     tax = Math.round(subtotal * 0.05 * 100) / 100;
     total = Math.round((subtotal + tax) * 100) / 100;
 
@@ -155,3 +153,9 @@ const loadTitle = () => {
   createTile(order_id);
 }
 
+const getPickUpTime = (time) => {
+  const myDate = new Date(time);
+  const formatedTime = myDate.getFullYear() + '-' +('0' + (myDate.getMonth()+1)).slice(-2)+ '-' +  ('0' + myDate.getDate()).slice(-2) + ' '+('0' + myDate.getHours()).slice(-2)+ ':'+('0' + (myDate.getMinutes())).slice(-2)+ ':'+('0' + myDate.getSeconds()).slice(-2);
+
+  return formatedTime;
+}
