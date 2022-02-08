@@ -11,7 +11,7 @@ module.exports = (router, database) => {
       res.send(order)
       let userName = order[0]['user_name'];
       let readyTime = DateToString(order[0]['ready_at']);
-      // sendTextMessageToUser(userName, orderID, readyTime);
+      sendTextMessageToUser(userName, orderID, readyTime);
     })
     .catch((e) => {
       console.log(e);
@@ -22,12 +22,12 @@ module.exports = (router, database) => {
   router.get("/users/:id", (req, res) => {
     const orderID = req.params.id;
   database
-    .getAllItemsByOrderId(orderID)
+    .getAllItemsByOrderIdandName(orderID)
     .then((order) => {
       res.send(order);
-      let userName = 'David Chan' //return to chain another promise to get username
+      let userName = order[0].user_name;
       let orderItems = (getItemsFromOrder(order));
-      // sendTextMessageToAdmin(userName, orderID, orderItems);
+      sendTextMessageToAdmin(userName, orderID, orderItems);
     })
     .catch((e) => {
       console.log(e);
