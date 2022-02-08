@@ -20,6 +20,10 @@ Food Pickup is a restaurant pickup app that allows user to browse an online menu
 - When user places their order an SMS is sent to the restaurant with the user's name, order #, and items
 - User is sent an SMS when their order is complete and ready for pickup
 
+### Order History
+- Orders are stored in table and displayed to user and marked as open, complete, cancelled
+- Restaurant is able to select from list of open orders and select pickup time
+
 
 ## Project Structure
 
