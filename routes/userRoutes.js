@@ -18,7 +18,10 @@ module.exports = (router, database) => {
     };
 
     router.get("/signin", (req, res) => {
-      res.render("signin");
+      if (!req.session.userId ) {
+        return res.render("signin");
+      }
+      return res.redirect('/');
     });
 
 
