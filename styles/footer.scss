@@ -52,3 +52,9 @@ p {
   /* The width is the width of the web page */
   z-index: 0;
 }
+
+.link {
+  text-decoration: underline;
+  text-decoration-color: $theme-color;
+  text-decoration-thickness: 2px;
+}
