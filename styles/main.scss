@@ -69,6 +69,7 @@ h1 {
   width: 18%;
   margin: 10px;
   font-family: $button-text;
+  font-weight: 700;
   font-size: $button-text-size;
   color: $text-color;
   background-color: transparent;
@@ -89,6 +90,7 @@ h1 {
 .btn {
   font-family: $button-text;
   font-size: $button-text-size;
+  font-weight: 700;
   color: $text-color;
   border: 0px;
   background-color: $theme-color;
@@ -109,6 +111,7 @@ h1 {
   font-size: $button-text-size;
   color: $text-color;
   border-width: 2px;
+  font-weight: 700;
   border-style: solid;
   border-color: $button-color;
   background-color: transparent;
@@ -125,6 +128,7 @@ h1 {
 .cart-button {
   height: 60px;
   width: 350px;
+  font-weight: 700;
 }
 
 .cart {
