@@ -90,3 +90,8 @@ Food Pickup is a restaurant pickup app that allows user to browse an online menu
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
+- ejs
+- express
+- morgan
+- sass
+- twilio
