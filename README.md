@@ -9,20 +9,20 @@ Food Pickup is a restaurant pickup app that allows user to browse an online menu
 
 ### Front Page
 - Users are able to add menu items to cart which are then transferred to cart page
-- Cart qty incrememnts based on number of items selected
+- Cart quantity increments based on number of items selected
 - Google Maps API showing restaurant location
 
 !["screenshot of BubbleTea Shop Front Page"](https://github.com/Davichavix/Food-Delivery/blob/features/README/docs/BubbleTea_Front_Page.png?raw=true)
 
 ### Cart
-- price totals are automatically calculated per line item as well as overall total
+- Price totals are automatically calculated per line item as well as overall total
 - Users can remove entire items or modify the quantity of each item
 - Total prices are recalculated automatically on user inputs
 
 !["screenshot of BubbleTea Shopping Cart"](https://github.com/Davichavix/Food-Delivery/blob/features/README/docs/BubbleTea_Cart.png?raw=true)
 
 ### Twilio Messaging
-- When user places their order an SMS is sent to the restaurant with the user's name, order #, and items
+- When a user places their order an SMS is sent to the restaurant with the user's name, order #, and items
 - User is sent an SMS when their order is complete and ready for pickup
 
 !["screenshot of pickup order SMS Notifications"](https://github.com/Davichavix/Food-Delivery/blob/features/README/docs/SMS_Screenshot.jpg?raw=true)
