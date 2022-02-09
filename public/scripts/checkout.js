@@ -45,17 +45,17 @@ $(() => {
           };
         });
 
-      $.ajax({
-        url: "/api/orders",
-        data: { userId, orderItems },
-        type: "POST",
-      })
-        .then((res) => {
-          const { orderId } = res;
-          localStorage.clear();
-          document.location.href = "/checkout/complete";
-          return $.get(`/twilio/users/${orderId}`)
+        $.ajax({
+          url: "/api/orders",
+          data: { userId, orderItems },
+          type: "POST",
         })
+          .then((res) => {
+            const { orderId } = res;
+            localStorage.clear();
+            document.location.href = "/checkout/complete";
+            return $.get(`/twilio/users/${orderId}`);
+          })
           .then((res) => {
             const { orderId } = res;
             localStorage.clear();
@@ -63,7 +63,8 @@ $(() => {
           })
           .catch((err) => console.log(err));
       });
-    });
+    })
+    .catch((e) => console.log(e));
 
   $("button.checkout-button.back").on("click", function (e) {
     e.preventDefault();

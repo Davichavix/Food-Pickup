@@ -13,6 +13,8 @@ const cartRoutes = require("./routes/cartRoutes");
 const checkoutRoutes = require("./routes/checkoutRoutes");
 const twilioRoutes = require("./routes/twilioRoutes");
 const userRoutes = require("./routes/userRoutes");
+const orderRoutes = require("./routes/orderRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 
 const cookieSession = require("cookie-session");
 app.use(
@@ -54,11 +56,15 @@ const cartRouter = express.Router();
 const checkoutRouter = express.Router();
 const twilioRouter = express.Router();
 const userRouter = express.Router();
+const orderRouter = express.Router();
+const adminRouter = express.Router();
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api", apiRoutes(apiRouter, database));
 app.use("/cart", cartRoutes(cartRouter));
 app.use("/checkout", checkoutRoutes(checkoutRouter, database));
+app.use("/orders", orderRoutes(orderRouter, database));
+app.use("/admin", adminRoutes(adminRouter, database));
 // app.use("/twilio", twilioRoutes(twilioRouter));
 app.use("/user", userRoutes(userRouter, database));
 app.use("/twilio", twilioRoutes(twilioRouter, database));
@@ -83,33 +89,30 @@ app.get("/", (req, res) => {
     });
 });
 
-app.get("/orders/:user_id", (req, res) => {
-  res.render("user_orders");
-});
+// app.get("/orders/:user_id", (req, res) => {
+//   res.render("user_orders");
+// });
 
-app.get("/orders/:user_id/:order_id", (req, res) => {
-  res.render("user_orders_id");
-});
+// app.get("/orders/:user_id/:order_id", (req, res) => {
+//   res.render("user_orders_id");
+// });
 
 //adjust as needed
-app.get("/admin", (req, res) => {
+// app.get("/admin", (req, res) => {
+//   res.render("admin_open");
+// });
 
-  res.render("admin_open");
-});
+// app.get("/admin/:id/confirm", (req, res) => {
+//   res.render("admin_confirm");
+// });
 
-app.get("/admin/:id/confirm", (req, res) => {
-  res.render("admin_confirm");
-});
+// app.get("/admin/history", (req, res) => {
+//   res.render("admin_history");
+// });
 
-app.get("/admin/history", (req, res) => {
-  res.render("admin_history");
-});
-
-app.get("/admin/history/:id", (req, res) => {
-  res.render("admin_id");
-})
-
-
+// app.get("/admin/history/:id", (req, res) => {
+//   res.render("admin_id");
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
