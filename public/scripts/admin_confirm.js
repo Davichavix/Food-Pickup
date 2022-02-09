@@ -53,9 +53,10 @@ $(document).ready(() => {
   }
 
   const creatOrder = (orderData) => {
-    const createdAt = (orderData.created_at.slice(0, 19)).replace('T', ' ');
+    const utc = new Date(orderData.created_at);
+    const createdAt = getPickUpTime(utc);
     let placedAt = '';
-    console.log(orderData.ready_at);
+    const phone = formatPhone(orderData.phone_number.toString());
 
     if (orderData.ready_at === null) {
       placedAt = 'Unconfirmed';
@@ -76,7 +77,7 @@ $(document).ready(() => {
             </tr>
             <tr>
                 <td>Phone Number:</td>
-                <td>${orderData.phone_number}</td>
+                <td>${phone}</td>
             </tr>
             <tr>
               <td>Email:</td>
@@ -96,7 +97,7 @@ $(document).ready(() => {
 
         <p>Order items:</p>
 
-        <section class='items'></section>
+        <section class='items' style='margin-top: -20px;'></section>
 
         <hr class="checkout-divider">
 
@@ -136,10 +137,10 @@ $(document).ready(() => {
 
     for (const item of all) {
       const container = $('.items')
-      container.append(`<p style='text-indent: 50px;line-height: 1.5;'>${item['name']} x${item['qty']}</p>`);
+      container.append(`<p style='text-indent: 50px;line-height: 0.8; font-weight: 600;'>${item['name']} x${item['qty']}</p>`);
       subtotal += item['price'] * item['qty'];
     }
-
+    subtotal = Math.round(subtotal * 100) / 100;
     tax = Math.round(subtotal * 0.05 * 100) / 100;
     total = Math.round((subtotal + tax) * 100) / 100;
 
