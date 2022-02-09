@@ -67,7 +67,7 @@ Food Pickup is a restaurant pickup app that allows user to browse an online menu
 ## Getting Started
 
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information 
+2. Update the `.env` file with your correct local information 
   - username: `labber` 
   - password: `labber` 
   - database: `midterm`
@@ -94,4 +94,4 @@ Food Pickup is a restaurant pickup app that allows user to browse an online menu
 - express
 - morgan
 - sass
-- twilio
+- Twilio
