@@ -1,0 +1,82 @@
+@import "styles/global";
+
+footer {
+  width: 100%;
+  background-color: rgb(236, 218, 194);
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  width: 80%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.fa-map-marker-alt {
+  color: $theme-color;
+}
+
+.address {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.address-text {
+  text-align: center;
+}
+
+p {
+  line-height: 1.2;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.address-title {
+  font-weight: 600;
+  margin: 0 0 -15px 0;
+}
+
+#map {
+  height: 300px;
+  /* The height is 400 pixels */
+  width: 55%;
+  /* The width is the width of the web page */
+  z-index: 0;
+}
+
+.link {
+  text-decoration: underline;
+  text-decoration-color: $theme-color;
+  text-decoration-thickness: 2px;
+}
+
+
+@media only screen and (max-width: 768px) {
+  /* For tablets */
+  .footer {
+    flex-direction: column;
+  }
+
+  #map {
+    width: 100%;
+    height: 250px;
+  }
+
+  .address {
+    width: 100%;
+  }
+}

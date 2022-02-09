@@ -42,7 +42,7 @@ h1 {
 
 .item-image {
   width: 15%;
-  max-width: 180px;
+  max-width: 150px;
   min-width: 70px;
   height: auto;
   padding: 15px 0 15px 0;
@@ -128,6 +128,7 @@ h1 {
 }
 
 .cart {
+  z-index: 10;
   display: flex;
   justify-content: flex-end;
   align-items: center;
