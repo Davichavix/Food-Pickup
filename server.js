@@ -93,6 +93,7 @@ app.get("/orders/:user_id/:order_id", (req, res) => {
 
 //adjust as needed
 app.get("/admin", (req, res) => {
+
   res.render("admin_open");
 });
 
@@ -108,11 +109,7 @@ app.get("/admin/history/:id", (req, res) => {
   res.render("admin_id");
 })
 
-// app.get("/signin", (req, res) => {
-//   res.render("signin");
-// });
 
-//remove stop here
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

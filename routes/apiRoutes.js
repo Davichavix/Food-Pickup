@@ -198,6 +198,7 @@ module.exports = function (router, database) {
           lastName: user.last_name,
           phone: user.phone_number,
           email: user.email,
+          isOwner: user.isowner
         };
         res.send(resUser);
       })

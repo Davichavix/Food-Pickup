@@ -10,6 +10,12 @@ $(() => {
       url: "/user",
       type: "POST",
       data,
-    }).then((user) => window.location.href="/");
+    }).then(({user}) => {
+      if (user.isOwner === true) {
+        window.location.href = "/admin";
+      } else {
+        window.location.href = "/";
+      }
+    });
   });
 });

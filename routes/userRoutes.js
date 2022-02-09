@@ -40,6 +40,7 @@ module.exports = (router, database) => {
               lastName: user.last_name,
               phone: user.phone_number,
               email: user.email,
+              isOwner: user.isowner,
             },
           });
         })
