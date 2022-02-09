@@ -211,7 +211,7 @@ const addItemsToOrder = (orderId, orderItems) => {
   return db
     .query(format(queryString, values))
     .then((res) => {
-      return {...res.rows, orderId};
+      return { ...res.rows, orderId };
     })
     .catch((err) => console.log(err));
 };
@@ -309,21 +309,21 @@ const getAllItemsByOrderIdandName = (orderId) => {
 };
 
 module.exports = {
-  getUserByEmail,         //
-  getUserById,            //
-  getAllOrdersByUserId,   //
-  getAllOrdersOwner,      //
+  getUserByEmail, //
+  getUserById, //
+  getAllOrdersByUserId, //
+  getAllOrdersOwner, //
   getAllOpenOrders,
-  getAllHistoryOrders,        //
-  getAllItemsByOrderId,   //
-  getAllItems,            //
-  getItemById,            //
-  addUser,                //
-  addOrder,               //incomplete
-  addItemsToOrder,        //incomplete
-  updateReadyTimeById,    //
-  completeOrder,          //
+  getAllHistoryOrders, //
+  getAllItemsByOrderId, //
+  getAllItems, //
+  getItemById, //
+  addUser, //
+  addOrder, //
+  addItemsToOrder, //
+  updateReadyTimeById, //
+  completeOrder, //
   getOrderDetailsByOrderId,
   cancelOrder,
-  getAllItemsByOrderIdandName
+  getAllItemsByOrderIdandName,
 };

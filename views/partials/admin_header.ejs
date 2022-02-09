@@ -1,23 +1,26 @@
 <header>
-
   <nav>
-
     <div class="nav-admin">
-        <form class="nav-logout">
+      <form class="nav-logout">
         <!--Add to form: action="/logout" method="POST" -->
-          <lable class="nav-gretting">Hello, admin.name! </lable>
-          <button type="submit" class="nav-button">Log out</button>
-        </form>
+        <label class="nav-greeting"></label>
+        <button type="button" class="nav-button logout">Log out</button>
+      </form>
 
-        <div>
-          <a href='/admin'><button type="button" class="nav-button">Open Orders</button></a>
-          <a href='/admin/history'><button type="button" class="nav-button"> History Orders</button></a>
-        </div>
+      <div>
+        <a href="/admin"
+          ><button type="button" class="nav-button">Open Orders</button></a
+        >
+        <a href="/admin/history"
+          ><button type="button" class="nav-button">History Orders</button></a
+        >
       </div>
-
+    </div>
   </nav>
 
-  <a href='/' class="header-logo"><img src="/images/logo.png" class="logo"></a>
+  <a href="/" class="header-logo"
+    ><img src="/images/logo.png" class="logo"
+  /></a>
 
-
+  <script src="/scripts/admin_header.js"></script>
 </header>

@@ -1,32 +1,18 @@
 <header>
-
-  <nav>
+  <nav class="nav-header">
     <!-- If no user's logged in  -->
     <div class="nav-no-user">
-    <!-- remove display after adding logic -->
-    <a href='/signin'><button type="button" class="nav-button">Sign In</button></a>
-    <a href='/'><button type="button" class="nav-button"> Menu</button></a>
+      <!-- remove display after adding logic -->
+      <a href="/user/signin"
+        ><button type="button" class="nav-button">Sign In</button></a
+      >
+      <a href="/"><button type="button" class="nav-button">Menu</button></a>
     </div>
-
-
-    <!-- If user's logged in  -->
-    <div class="nav-user" style ='display: none;'>
-    <!-- remove display after adding logic -->
-      <form class="nav-logout">
-      <!--Add to form: action="/logout" method="POST" -->
-        <lable class="nav-gretting">Hello, user.name! </lable>
-        <button type="submit" class="nav-button">Log out</button>
-      </form>
-
-      <div>
-        <button type="button" class="nav-button"> Menu</button>
-        <button type="button" class="nav-button"> Orders</button>
-      </div>
-    </div>
-
   </nav>
 
-  <a href='/' class="header-logo"><img src="/images/logo.png" class="logo"></a>
+  <a href="/" class="header-logo"
+    ><img src="/images/logo.png" class="logo"
+  /></a>
 
-
+  <script src="/scripts/header.js"></script>
 </header>
