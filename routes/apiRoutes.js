@@ -29,20 +29,7 @@ module.exports = function (router, database) {
       });
   });
 
-  // router.get("/image/:id", (req, res) => {
-  //   database
-  //     .getItemById(req.params.id)
-  //     .then((item) => {
-  //       const { image_url } = item;
-  //       res.sendFile(image_url, {root: './public'});
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //       res.send(e);
-  //     });
-  // });
-
-  router.get("/users/:email", (req, res) => {
+  router.get("/users/email/:email", (req, res) => {
     database
       .getUserByEmail(req.params.email)
       .then((user) => res.send(user))
@@ -75,7 +62,7 @@ module.exports = function (router, database) {
   router.get("/orders/user/:id", (req, res) => {
     database
       .getAllOrdersByUserId(req.params.id)
-      .then((orders) => res.send({orders}))
+      .then((orders) => res.send({ orders }))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -85,7 +72,7 @@ module.exports = function (router, database) {
   router.get("/orders/details/:id", (req, res) => {
     database
       .getOrderDetailsByOrderId(req.params.id)
-      .then((order) => res.send({order}))
+      .then((order) => res.send({ order }))
       .catch((e) => {
         console.log(e);
         res.send(e);
@@ -193,6 +180,28 @@ module.exports = function (router, database) {
     database
       .completeOrder(orderId)
       .then((order) => res.send(order))
+      .catch((e) => {
+        console.log(e);
+        res.send(e);
+      });
+  });
+
+  router.get("/users/me", (req, res) => {
+    const userId = req.session.userId;
+
+    database
+      .getUserById(userId)
+      .then((user) => {
+        const resUser = {
+          id: user.id,
+          firstName: user.first_name,
+          lastName: user.last_name,
+          phone: user.phone_number,
+          email: user.email,
+          isOwner: user.isowner
+        };
+        res.send(resUser);
+      })
       .catch((e) => {
         console.log(e);
         res.send(e);

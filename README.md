@@ -31,6 +31,7 @@ Food Pickup is a restaurant pickup app that allows user to browse an online menu
 - Orders are stored in table and displayed to user and marked as open, complete, cancelled
 - Restaurant is able to select from list of open orders and select pickup time
 
+!["screenshot of order history"](https://github.com/Davichavix/Food-Delivery/blob/features/README/docs/Open_orders.png?raw=true)
 
 ## Project Structure
 
@@ -89,3 +90,8 @@ Food Pickup is a restaurant pickup app that allows user to browse an online menu
 - Node 10.x or above
 - NPM 5.x or above
 - PG 6.x
+- ejs
+- express
+- morgan
+- sass
+- twilio
