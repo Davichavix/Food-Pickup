@@ -9,8 +9,6 @@ $(() => {
       if (!$.isEmptyObject(user)) {
         const name = `${user.firstName} ${user.lastName}`;
 
-
-
         const html = `
       <!-- If user's logged in  -->
       <div class="nav-user">
@@ -22,11 +20,15 @@ $(() => {
         <div>
           <a href="/"><button type="button" class="nav-button"> Menu</button></a>
 
-          ${user.isOwner === true ? `<a href="/admin"><button type="button" class="nav-button">Open Orders</button></a>` : `<button type="button" class="nav-button orders"> Orders</button>` }
+          ${
+            user.isOwner === true
+              ? `<a href="/admin"><button type="button" class="nav-button">Open Orders</button></a>`
+              : `<button type="button" class="nav-button orders"> Orders</button>`
+          }
         </div>
       </div>`;
 
-        $nav.append(html);
+        $nav.html(html);
       } else {
         const html = `
       <!-- If no user's logged in  -->
@@ -36,7 +38,7 @@ $(() => {
       <a href='/'><button type="button" class="nav-button"> Menu</button></a>
       </div>`;
 
-        $nav.append(html);
+        $nav.html(html);
       }
 
       const $logout = $("button.nav-button.logout");

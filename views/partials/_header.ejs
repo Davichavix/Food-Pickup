@@ -1,11 +1,18 @@
 <header>
-
   <nav class="nav-header">
-
+    <!-- If no user's logged in  -->
+    <div class="nav-no-user">
+      <!-- remove display after adding logic -->
+      <a href="/user/signin"
+        ><button type="button" class="nav-button">Sign In</button></a
+      >
+      <a href="/"><button type="button" class="nav-button">Menu</button></a>
+    </div>
   </nav>
 
-  <a href='/' class="header-logo"><img src="/images/logo.png" class="logo"></a>
+  <a href="/" class="header-logo"
+    ><img src="/images/logo.png" class="logo"
+  /></a>
 
-<script src="/scripts/header.js"></script>
-
+  <script src="/scripts/header.js"></script>
 </header>
