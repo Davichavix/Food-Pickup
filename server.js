@@ -74,6 +74,10 @@ app.get("/", (req, res) => {
     });
 });
 
+app.get('/signin', (req, res) => {
+  res.render('signin');
+})
+
 app.get("/orders/:user_id", (req, res) => {
   res.render("user_orders");
 });
@@ -82,7 +86,7 @@ app.get("/orders/:user_id/:order_id", (req, res) => {
   res.render("user_orders_id");
 });
 
-//adjust as needed
+//for admin
 app.get("/admin", (req, res) => {
   res.render("admin_open");
 });
@@ -98,13 +102,6 @@ app.get("/admin/history", (req, res) => {
 app.get("/admin/history/:id", (req, res) => {
   res.render("admin_id");
 })
-
-
-app.get('/signin', (req, res) => {
-  res.render('signin');
-})
-
-//remove stop here
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
