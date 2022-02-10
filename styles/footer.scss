@@ -39,7 +39,7 @@ h3 {
   text-align: center;
 }
 
-p {
+.address-detail {
   line-height: 1.2;
   font-size: 18px;
   font-weight: 400;
@@ -52,10 +52,9 @@ p {
 
 #map {
   height: 300px;
-  /* The height is 400 pixels */
   width: 55%;
-  /* The width is the width of the web page */
   z-index: 0;
+  margin: auto;
 }
 
 .link {
@@ -65,7 +64,7 @@ p {
 }
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1200px) {
   /* For tablets */
   .footer {
     flex-direction: column;

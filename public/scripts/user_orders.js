@@ -9,8 +9,7 @@ $(document).ready(() => {
 
   //helper funtions
   const creatOrder = (orderData) => {
-
-    const createdAt = (orderData.created_at.slice(0, 19)).replace('T', ' ');
+    const createdAt = formatTime(orderData.created_at);
     const html = `
       <tbody>
         <tr  class="row">
@@ -52,10 +51,20 @@ $(document).ready(() => {
   }
 
   const loadOrders = () => {
-    const path =window.location.pathname;
-    const user_id = path.split('/')[2];
-
-    $.get(`/api/orders/user/${user_id}`).then((res) => {
-      renderOrders(res);
-    });
+    $.get("/api/users/me")
+    .then((user) => {
+      const user_id = user.id;
+      $.get(`/api/orders/user/${user_id}`).then((res) => {
+        renderOrders(res);
+      });
+    })
   }
+
+
+  const formatTime = (time) => {
+    const myDate = new Date(time);
+    const formatedTime = myDate.getFullYear() + '-' +('0' + (myDate.getMonth()+1)).slice(-2)+ '-' +  ('0' + myDate.getDate()).slice(-2) + ' '+('0' + myDate.getHours()).slice(-2)+ ':'+('0' + (myDate.getMinutes())).slice(-2)+ ':'+('0' + myDate.getSeconds()).slice(-2);
+
+    return formatedTime;
+  }
+

@@ -6,7 +6,7 @@ $(document).ready(() => {
 
   //helper funtions
   const creatOrder = (orderData) => {
-    const createdAt = (orderData.created_at.slice(0, 19)).replace('T', ' ');
+    const createdAt = formatTime(orderData.created_at);
 
     const html = `
       <tbody>
@@ -55,4 +55,11 @@ $(document).ready(() => {
     $.get(`/api/admin/open`).then((res) => {
       renderOrders({res});
     });
+  }
+
+  const formatTime = (time) => {
+    const myDate = new Date(time);
+    const formatedTime = myDate.getFullYear() + '-' +('0' + (myDate.getMonth()+1)).slice(-2)+ '-' +  ('0' + myDate.getDate()).slice(-2) + ' '+('0' + myDate.getHours()).slice(-2)+ ':'+('0' + (myDate.getMinutes())).slice(-2)+ ':'+('0' + myDate.getSeconds()).slice(-2);
+
+    return formatedTime;
   }
