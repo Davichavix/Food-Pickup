@@ -1,5 +1,5 @@
 <header>
-  <nav class="nav-header">
+  <nav class="nav-header desktop">
     <!-- If no user's logged in  -->
     <div class="nav-no-user">
       <a href="/signin"><button type="button" class="nav-button">Sign In</button></a>
@@ -8,8 +8,16 @@
   </nav>
 
   <a href="/" class="header-logo"
-    ><img src="/images/logo.png" class="logo"
-  /></a>
+  ><img src="/images/logo.png" class="logo"
+/></a>
+
+  <nav class="tablet">
+      <button type="button" class="hamburger"><i class="fa-solid fa-bars fa-lg"></i></button>
+    <div id="tablet-links">
+      <a href="/user/signin"><button type="button" class="btn-trans tablet-btn">Sign In</button></a>
+      <a href="/"><button type="button" class="btn-trans tablet-btn">Menu</button></a>
+    </div>
+  <nav>
 
   <script src="/scripts/header.js"></script>
 </header>

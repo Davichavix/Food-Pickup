@@ -1,4 +1,8 @@
 $(() => {
+  $(".hamburger").click(function () {
+    $("#tablet-links").slideToggle();
+  });
+
   $.get("/api/users/me")
     .then((user) => {
       const $navGreeting = $("label.nav-greeting");

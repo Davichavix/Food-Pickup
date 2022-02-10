@@ -1,8 +1,7 @@
 <header>
   <nav>
-    <div class="nav-admin">
+    <div class="nav-admin desktop">
       <form class="nav-logout">
-        <!--Add to form: action="/logout" method="POST" -->
         <label class="nav-greeting"></label>
         <button type="button" class="nav-button logout">Log out</button>
       </form>
@@ -16,6 +15,18 @@
         >
       </div>
     </div>
+
+    <div class="tablet">
+      <button type="button" class="hamburger"><i class="fa-solid fa-bars fa-lg"></i></button>
+      <div id="tablet-links">
+        <form class="nav-logout">
+          <label class="nav-greeting"></label>
+          <button type="button" class="nav-button logout">Log out</button>
+        </form>
+        <a href="/admin"><button type="button" class="btn-trans tablet-btn">Open Orders</button></a>
+        <a href="/admin/history"><button type="button" class="btn-trans tablet-btn">History Orders</button></a>
+      </div>
+    <div>
   </nav>
 
   <a href="/admin" class="header-logo"
