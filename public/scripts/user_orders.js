@@ -51,12 +51,13 @@ $(document).ready(() => {
   }
 
   const loadOrders = () => {
-    const path =window.location.pathname;
-    const user_id = path.split('/')[2];
-
-    $.get(`/api/orders/user/${user_id}`).then((res) => {
-      renderOrders(res);
-    });
+    $.get("/api/users/me")
+    .then((user) => {
+      const user_id = user.id;
+      $.get(`/api/orders/user/${user_id}`).then((res) => {
+        renderOrders(res);
+      });
+    })
   }
 
 
@@ -66,3 +67,4 @@ $(document).ready(() => {
 
     return formatedTime;
   }
+
