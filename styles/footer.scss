@@ -7,6 +7,7 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+  bottom: 0;
 }
 
 .footer {
@@ -17,8 +18,6 @@ footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  position: absolute;
-  bottom: 0;
 }
 
 h3 {
