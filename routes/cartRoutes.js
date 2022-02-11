@@ -5,7 +5,7 @@
 module.exports = (router, database) => {
   router.get("/", (req, res) => {
     if (!req.session.userId) {
-      return res.redirect("/");
+      return res.redirect("/user/signin");
     }
     return res.render("cart");
   })
